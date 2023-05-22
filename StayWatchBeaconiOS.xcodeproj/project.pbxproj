@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB6FF5602A1B11AA009D24BD /* info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AB6FF55F2A1B11AA009D24BD /* info.plist */; };
 		AB7CF3BB2A15BEE80008558A /* StayWatchBeaconiOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7CF3BA2A15BEE80008558A /* StayWatchBeaconiOSApp.swift */; };
 		AB7CF3BD2A15BEE80008558A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7CF3BC2A15BEE80008558A /* ContentView.swift */; };
 		AB7CF3BF2A15BEE90008558A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB7CF3BE2A15BEE90008558A /* Assets.xcassets */; };
@@ -14,6 +15,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AB6FF55F2A1B11AA009D24BD /* info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = info.plist; sourceTree = "<group>"; };
 		AB7CF3B72A15BEE80008558A /* StayWatchBeaconiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StayWatchBeaconiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB7CF3BA2A15BEE80008558A /* StayWatchBeaconiOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StayWatchBeaconiOSApp.swift; sourceTree = "<group>"; };
 		AB7CF3BC2A15BEE80008558A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -51,6 +53,7 @@
 		AB7CF3B92A15BEE80008558A /* StayWatchBeaconiOS */ = {
 			isa = PBXGroup;
 			children = (
+				AB6FF55F2A1B11AA009D24BD /* info.plist */,
 				AB7CF3BA2A15BEE80008558A /* StayWatchBeaconiOSApp.swift */,
 				AB7CF3BC2A15BEE80008558A /* ContentView.swift */,
 				AB7CF3BE2A15BEE90008558A /* Assets.xcassets */,
@@ -125,6 +128,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB6FF5602A1B11AA009D24BD /* info.plist in Resources */,
 				AB7CF3C22A15BEE90008558A /* Preview Assets.xcassets in Resources */,
 				AB7CF3BF2A15BEE90008558A /* Assets.xcassets in Resources */,
 			);
