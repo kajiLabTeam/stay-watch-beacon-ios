@@ -14,6 +14,7 @@ class CentralManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPe
     @Published var isConnected = false
     var centralManager: CBCentralManager!
     var peripheral: CBPeripheral?
+    //let serviceUUID = CBUUID(string: "378d5538-f7f9-d4c0-2167-c5afcd226353")
     let serviceUUID = CBUUID(string: "74278bda-b644-4520-8f0c-720eaf059935")
     let characteristicUUID = CBUUID(string: "74278bda-b644-4520-8f0c-720eaf059935")
     
@@ -39,7 +40,9 @@ class CentralManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPe
     //startScanningメソッドで、指定されたサービスUUIDを持つペリフェラルをスキャンします。
     func startScanning() {
         print("スキャン開始")
-        centralManager.scanForPeripherals(withServices: [serviceUUID], options: nil)
+        //centralManager.scanForPeripherals(withServices: [serviceUUID], options: nil)
+        centralManager.scanForPeripherals(withServices: nil, options: nil)
+        
     }
     
     //centralManagerDidUpdateStateメソッドで、セントラルマネージャの状態(central.state)が変更されたことを検知します。
@@ -175,7 +178,7 @@ class CentralManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPe
         //             rssi引数を受け取り、rssi.intValueで整数値に変換
         let rssiValue = rssi.intValue
         //           次に、約1メートルの閾値としてoneMeterRSSIThreshold変数に-60を設定
-        let oneMeterRSSIThreshold = -60
+        let oneMeterRSSIThreshold = -80
         
         if rssiValue > oneMeterRSSIThreshold {
             //                 1メートル以内であると判断します
@@ -201,6 +204,7 @@ class CentralManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPe
         return nil
     }
 }
+
 
 
 struct ContentView: View {
