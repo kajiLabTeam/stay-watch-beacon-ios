@@ -15,7 +15,8 @@ class CentralManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPe
     var centralManager: CBCentralManager!
     var peripheral: CBPeripheral?
     //let serviceUUID = CBUUID(string: "378d5538-f7f9-d4c0-2167-c5afcd226353")
-    let serviceUUID = CBUUID(string: "74278bda-b644-4520-8f0c-720eaf059935")
+    let serviceUUIDString = "378D5538-F7F9-D4C0-2167-C5AFCD226353"
+    let serviceUUID = CBUUID(string: "378D5538-F7F9-D4C0-2167-C5AFCD226353")
     let characteristicUUID = CBUUID(string: "74278bda-b644-4520-8f0c-720eaf059935")
     
     
@@ -58,13 +59,25 @@ class CentralManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPe
     
     // ペリフェラルを検出したときに呼ばれるメソッドです。
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String: Any], rssi RSSI: NSNumber) {
-        print("ペリフェラル（送信機）を検出")
+        //print("ペリフェラル（送信機）を検出したよ")
+        let name = peripheral.name ?? "Unavailable"
+        print(name)
         self.peripheral = peripheral
+        
+        if(peripheral.identifier.uuidString == serviceUUIDString){
+            print("\(serviceUUIDString)のRSSI: \(RSSI)")
+        }
+        
+//        if let rssiValue = advertisementData[CBAdvertisementDataRSSIKey] as? NSNumber {
+//            print("RSSI: \(rssiValue)")
+//        }
         
         
         
         //        検出されたペリフェラルに接続を試みます。接続が成功した場合、centralManager(_:didConnect:)デリゲートメソッドが呼ばれ、失敗した場合はcentralManager(_:didFailToConnect:error:)が呼ばれます。
-        central.connect(peripheral, options: nil)
+        //central.connect(peripheral, options: nil)
+//        print(peripheral.identifier.uuidString)
+//        print(peripheral.identifier.)
     }
     
     
