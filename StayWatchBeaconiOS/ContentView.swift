@@ -14,6 +14,7 @@ class CentralManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPe
     @Published var isConnected = false
     var centralManager: CBCentralManager!
     var peripheral: CBPeripheral?
+    @Published var rssis:[Int] = []
     //let serviceUUID = CBUUID(string: "378d5538-f7f9-d4c0-2167-c5afcd226353")
     let serviceUUIDString = "378D5538-F7F9-D4C0-2167-C5AFCD226353"
     let serviceUUID = CBUUID(string: "378D5538-F7F9-D4C0-2167-C5AFCD226353")
@@ -66,6 +67,7 @@ class CentralManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPe
         
         if(peripheral.identifier.uuidString == serviceUUIDString){
             print("\(serviceUUIDString)のRSSI: \(RSSI)")
+            rssis.append(RSSI.intValue)
         }
         
 //        if let rssiValue = advertisementData[CBAdvertisementDataRSSIKey] as? NSNumber {
@@ -257,7 +259,10 @@ struct ContentView: View {
                     .background(Color.blue)
                     .foregroundColor(.white)
                     .cornerRadius(8)
-                
+            }
+            
+            List(centralManager.rssis, id: \.self) { rssi in
+                Text(String(rssi))
             }
         }
     }
