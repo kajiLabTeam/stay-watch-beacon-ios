@@ -12,6 +12,7 @@ import CoreBluetooth
 // CentralManagerは、セントラル（Apple Watch）の役割を担当するクラスです
 class CentralManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     @Published var isConnected = false
+    @Published var isScanning = false
     var centralManager: CBCentralManager!
     var peripheral: CBPeripheral?
     @Published var rssis:[Int] = []
@@ -42,6 +43,7 @@ class CentralManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPe
     //startScanningメソッドで、指定されたサービスUUIDを持つペリフェラルをスキャンします。
     func startScanning() {
         print("スキャン開始")
+        isScanning = true
         //centralManager.scanForPeripherals(withServices: [serviceUUID], options: nil)
         centralManager.scanForPeripherals(withServices: nil, options: nil)
         
@@ -123,6 +125,13 @@ class CentralManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPe
         }
         
         checkDistance(rssi: RSSI)
+    }
+    
+    // BLEの受信終了
+    func stopScanning() {
+        print("受信終了")
+        isScanning = false
+        centralManager.stopScan()
     }
     
     
@@ -247,13 +256,19 @@ struct ContentView: View {
             
             
             Button(action: {
-                if centralManager.isConnected {
-                    centralManager.incrementCounter()
-                } else {
+//                if centralManager.isConnected {
+//                    centralManager.incrementCounter()
+//                } else {
+//                    centralManager.startScanning()
+//                }
+                if centralManager.isScanning {
+                    centralManager.stopScanning()
+                }else{
                     centralManager.startScanning()
                 }
+                
             }) {
-                Text(centralManager.isConnected ? "CountUP" : "通信を受信する")
+                Text(centralManager.isScanning ? "受信終了" : "受信開始")
                     .font(.title)
                     .padding()
                     .background(Color.blue)
