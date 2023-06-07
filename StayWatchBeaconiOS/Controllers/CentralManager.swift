@@ -32,7 +32,7 @@ class CentralManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPe
     override init() {
         super.init()
         centralManager = CBCentralManager(delegate: self, queue: nil)
-        print("初期化")
+        print("初期化(Central)")
         
         
     }
@@ -67,7 +67,7 @@ class CentralManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPe
         self.peripheral = peripheral
         
         if(peripheral.identifier.uuidString == serviceUUIDString){
-            print("\(serviceUUIDString)のRSSI: \(RSSI)")
+            //print("\(serviceUUIDString)のRSSI: \(RSSI)")
             rssis.append(RSSI.intValue)
         }
         
