@@ -8,10 +8,29 @@
 import SwiftUI
 import CoreBluetooth
 
+
+// Centralを見るためのContentView
 struct ContentView: View {
     @StateObject var centralManager = CentralManager()
-    
+    @StateObject var peripheralManager = PeripheralManager()
+
     var body: some View {
+        // Peripheral
+        VStack {
+            Text("Countしないよ")
+                .font(.largeTitle)
+            Button(action: {
+                if peripheralManager.isAdvertising {
+                    peripheralManager.stopAdvertising()
+                }else {
+                    peripheralManager.startAdvertising()
+                }
+            }) {
+                Text(peripheralManager.isAdvertising ? "送信終了" : "送信開始")
+                    .font(.title)
+            }
+        }
+        // Central
         VStack {
 //            if centralManager.isConnected {
 //                Text("接続済み")
@@ -21,9 +40,9 @@ struct ContentView: View {
 //                    .font(.largeTitle)
 //            }
             Text("据え置き型BLEビーコン")
-            
-            
-            
+
+
+
 //            if centralManager.isOneMeterAway {
 //                Text("1メートル以内です")
 //                    .font(.headline)
@@ -31,8 +50,8 @@ struct ContentView: View {
 //                Text("1メートル以上離れています")
 //                    .font(.headline)
 //            }
-            
-            
+
+
             Button(action: {
 //                if centralManager.isConnected {
 //                    centralManager.incrementCounter()
@@ -44,7 +63,7 @@ struct ContentView: View {
                 }else{
                     centralManager.startScanning()
                 }
-                
+
             }) {
                 Text(centralManager.isScanning ? "受信終了" : "受信開始")
                     .font(.title)
@@ -53,7 +72,7 @@ struct ContentView: View {
                     .foregroundColor(.white)
                     .cornerRadius(8)
             }
-            
+
             List(centralManager.rssis, id: \.self) { rssi in
                 Text(String(rssi))
             }
