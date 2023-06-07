@@ -11,6 +11,7 @@
 		AB7CF3BD2A15BEE80008558A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7CF3BC2A15BEE80008558A /* ContentView.swift */; };
 		AB7CF3BF2A15BEE90008558A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB7CF3BE2A15BEE90008558A /* Assets.xcassets */; };
 		AB7CF3C22A15BEE90008558A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB7CF3C12A15BEE90008558A /* Preview Assets.xcassets */; };
+		ABAB5C052A303B4F003F0CBB /* CentralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAB5C042A303B4F003F0CBB /* CentralManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +21,7 @@
 		AB7CF3BC2A15BEE80008558A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		AB7CF3BE2A15BEE90008558A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AB7CF3C12A15BEE90008558A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		ABAB5C042A303B4F003F0CBB /* CentralManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CentralManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,9 +54,10 @@
 		AB7CF3B92A15BEE80008558A /* StayWatchBeaconiOS */ = {
 			isa = PBXGroup;
 			children = (
+				ABAB5C032A3039D0003F0CBB /* Views */,
+				ABAB5C022A3039BB003F0CBB /* Controllers */,
 				AB42A22E2A249CEE00C9D46F /* Info.plist */,
 				AB7CF3BA2A15BEE80008558A /* StayWatchBeaconiOSApp.swift */,
-				AB7CF3BC2A15BEE80008558A /* ContentView.swift */,
 				AB7CF3BE2A15BEE90008558A /* Assets.xcassets */,
 				AB7CF3C02A15BEE90008558A /* Preview Content */,
 			);
@@ -67,6 +70,22 @@
 				AB7CF3C12A15BEE90008558A /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		ABAB5C022A3039BB003F0CBB /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				ABAB5C042A303B4F003F0CBB /* CentralManager.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		ABAB5C032A3039D0003F0CBB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AB7CF3BC2A15BEE80008558A /* ContentView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,6 +160,7 @@
 			files = (
 				AB7CF3BD2A15BEE80008558A /* ContentView.swift in Sources */,
 				AB7CF3BB2A15BEE80008558A /* StayWatchBeaconiOSApp.swift in Sources */,
+				ABAB5C052A303B4F003F0CBB /* CentralManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

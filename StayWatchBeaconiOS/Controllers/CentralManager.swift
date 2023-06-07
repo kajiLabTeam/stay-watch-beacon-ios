@@ -1,13 +1,12 @@
 //
-//  ContentView.swift
+//  CentralManager.swift
 //  StayWatchBeaconiOS
 //
-//  Created by 戸川浩汰 on 2023/05/18.
+//  Created by 戸川浩汰 on 2023/06/07.
 //
 
-import SwiftUI
+import Foundation
 import CoreBluetooth
-
 
 // CentralManagerは、セントラル（Apple Watch）の役割を担当するクラスです
 class CentralManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeripheralDelegate {
@@ -72,16 +71,16 @@ class CentralManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPe
             rssis.append(RSSI.intValue)
         }
         
-//        if let rssiValue = advertisementData[CBAdvertisementDataRSSIKey] as? NSNumber {
-//            print("RSSI: \(rssiValue)")
-//        }
+        //        if let rssiValue = advertisementData[CBAdvertisementDataRSSIKey] as? NSNumber {
+        //            print("RSSI: \(rssiValue)")
+        //        }
         
         
         
         //        検出されたペリフェラルに接続を試みます。接続が成功した場合、centralManager(_:didConnect:)デリゲートメソッドが呼ばれ、失敗した場合はcentralManager(_:didFailToConnect:error:)が呼ばれます。
         //central.connect(peripheral, options: nil)
-//        print(peripheral.identifier.uuidString)
-//        print(peripheral.identifier.)
+        //        print(peripheral.identifier.uuidString)
+        //        print(peripheral.identifier.)
     }
     
     
@@ -226,79 +225,5 @@ class CentralManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPe
             }
         }
         return nil
-    }
-}
-
-
-
-struct ContentView: View {
-    @StateObject var centralManager = CentralManager()
-    
-    var body: some View {
-        VStack {
-            if centralManager.isConnected {
-                Text("接続済み")
-                    .font(.largeTitle)
-            } else {
-                Text("未接続")
-                    .font(.largeTitle)
-            }
-            
-            
-            
-            if centralManager.isOneMeterAway {
-                Text("1メートル以内です")
-                    .font(.headline)
-            } else {
-                Text("1メートル以上離れています")
-                    .font(.headline)
-            }
-            
-            
-            Button(action: {
-//                if centralManager.isConnected {
-//                    centralManager.incrementCounter()
-//                } else {
-//                    centralManager.startScanning()
-//                }
-                if centralManager.isScanning {
-                    centralManager.stopScanning()
-                }else{
-                    centralManager.startScanning()
-                }
-                
-            }) {
-                Text(centralManager.isScanning ? "受信終了" : "受信開始")
-                    .font(.title)
-                    .padding()
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(8)
-            }
-            
-            List(centralManager.rssis, id: \.self) { rssi in
-                Text(String(rssi))
-            }
-        }
-    }
-}
-
-// 初期のContentView
-//struct ContentView: View {
-//    var body: some View {
-//        VStack {
-//            Image(systemName: "globe")
-//                .imageScale(.large)
-//                .foregroundColor(.accentColor)
-//            Text("Hello, Beacon!!!")
-//        }
-//        .padding()
-//    }
-//}
-
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
     }
 }
