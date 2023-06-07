@@ -38,6 +38,13 @@ class PeripheralManager: NSObject, ObservableObject, CBPeripheralManagerDelegate
         peripheralManager.add(service)
         // アドバタイズ開始
         peripheralManager.startAdvertising([CBAdvertisementDataServiceUUIDsKey: [serviceUUID]])
+        isAdvertising = true
+    }
+    
+    // アドバタイズを終了するメソッド
+    func stopAdvertising() {
+        peripheralManager.stopAdvertising()
+        isAdvertising = false
     }
     
     // ペリフェラルマネージャの状態が更新されたときに呼ばれるデリゲートメソッド
@@ -70,9 +77,13 @@ struct ContentView: View {
             Text("Countしないよ")
                 .font(.largeTitle)
             Button(action: {
-                peripheralManager.startAdvertising()
+                if peripheralManager.isAdvertising {
+                    peripheralManager.stopAdvertising()
+                }else {
+                    peripheralManager.startAdvertising()
+                }
             }) {
-                Text("通信を送る")
+                Text(peripheralManager.isAdvertising ? "送信終了" : "送信開始")
                     .font(.title)
             }
         }
