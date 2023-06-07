@@ -52,9 +52,10 @@
 		AB7CF3B92A15BEE80008558A /* StayWatchBeaconiOS */ = {
 			isa = PBXGroup;
 			children = (
+				ABAB5C032A3039D0003F0CBB /* Views */,
+				ABAB5C022A3039BB003F0CBB /* Controllers */,
 				AB42A22E2A249CEE00C9D46F /* Info.plist */,
 				AB7CF3BA2A15BEE80008558A /* StayWatchBeaconiOSApp.swift */,
-				AB7CF3BC2A15BEE80008558A /* ContentView.swift */,
 				AB7CF3BE2A15BEE90008558A /* Assets.xcassets */,
 				AB7CF3C02A15BEE90008558A /* Preview Content */,
 			);
@@ -67,6 +68,21 @@
 				AB7CF3C12A15BEE90008558A /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		ABAB5C022A3039BB003F0CBB /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		ABAB5C032A3039D0003F0CBB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AB7CF3BC2A15BEE80008558A /* ContentView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

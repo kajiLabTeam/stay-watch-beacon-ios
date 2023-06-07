@@ -236,23 +236,24 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            if centralManager.isConnected {
-                Text("接続済み")
-                    .font(.largeTitle)
-            } else {
-                Text("未接続")
-                    .font(.largeTitle)
-            }
+//            if centralManager.isConnected {
+//                Text("接続済み")
+//                    .font(.largeTitle)
+//            } else {
+//                Text("未接続")
+//                    .font(.largeTitle)
+//            }
+            Text("据え置き型BLEビーコン")
             
             
             
-            if centralManager.isOneMeterAway {
-                Text("1メートル以内です")
-                    .font(.headline)
-            } else {
-                Text("1メートル以上離れています")
-                    .font(.headline)
-            }
+//            if centralManager.isOneMeterAway {
+//                Text("1メートル以内です")
+//                    .font(.headline)
+//            } else {
+//                Text("1メートル以上離れています")
+//                    .font(.headline)
+//            }
             
             
             Button(action: {
