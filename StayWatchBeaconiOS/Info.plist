@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict>
-	<key>CFBundleDocumentTypes</key>
-	<array>
-		<dict/>
-	</array>
-	<key>NSBluetoothAlwaysUsageDescription</key>
-	<string>Bluetoothを使用します</string>
-</dict>
+    <dict>
+        <key>CFBundleDocumentTypes</key>
+        <array>
+            <dict/>
+        </array>
+        <key>NSBluetoothAlwaysUsageDescription</key>
+        <string>Bluetoothを使用します</string>
+        <key>UIBackgroundModes</key>
+        <array>
+            <string>バックグラウンドでbluetooth-centralを行います</string>
+            <string>バックグラウンドでbluetooth-peripheralを行います</string>
+        </array>
+    </dict>
 </plist>
