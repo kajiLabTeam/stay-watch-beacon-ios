@@ -6,7 +6,10 @@
 	<array>
 		<dict/>
 	</array>
-	<key>NSBluetoothAlwaysUsageDescription</key>
-	<string>Bluetoothを使用します</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>bluetooth-central</string>
+		<string>bluetooth-peripheral</string>
+	</array>
 </dict>
 </plist>
