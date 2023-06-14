@@ -15,10 +15,10 @@ class CentralManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPe
     var centralManager: CBCentralManager!
     var peripheral: CBPeripheral?
     @Published var rssis:[Int] = []
-    //let serviceUUID = CBUUID(string: "378d5538-f7f9-d4c0-2167-c5afcd226353")
     let serviceUUIDString = "378D5538-F7F9-D4C0-2167-C5AFCD226353"
-    let serviceUUID = CBUUID(string: "378D5538-F7F9-D4C0-2167-C5AFCD226353")
+    let serviceUUID = CBUUID(string: "0000feaa-0000-1000-8000-00805f9b34fb")
     let characteristicUUID = CBUUID(string: "74278bda-b644-4520-8f0c-720eaf059935")
+    let services: [CBUUID] = [CBUUID(string: "378d5538-f7f9-d4c0-2167-c5afcd226353")]
     
     
     @Published var isOneMeterAway = false
@@ -33,8 +33,6 @@ class CentralManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPe
         super.init()
         centralManager = CBCentralManager(delegate: self, queue: nil)
         print("初期化(Central)")
-        
-        
     }
     
     
@@ -43,9 +41,7 @@ class CentralManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPe
     func startScanning() {
         print("スキャン開始")
         isScanning = true
-        //centralManager.scanForPeripherals(withServices: [serviceUUID], options: nil)
-        centralManager.scanForPeripherals(withServices: nil, options: nil)
-        
+        centralManager.scanForPeripherals(withServices: [serviceUUID], options: nil)
     }
     
     //centralManagerDidUpdateStateメソッドで、セントラルマネージャの状態(central.state)が変更されたことを検知します。
@@ -59,63 +55,49 @@ class CentralManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPe
     }
     
     
-    // ペリフェラルを検出したときに呼ばれるメソッドです。
+    // ペリフェラルを検出したときに呼ばれるメソッドです。サービス見つかった時に呼ばれるデリゲートメソッド
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String: Any], rssi RSSI: NSNumber) {
         //print("ペリフェラル（送信機）を検出したよ")
         let name = peripheral.name ?? "Unavailable"
-        print(name)
+        //let uuid = peripheral.identifier.uuidString
+        //print(name)
+        //print(uuid)
         self.peripheral = peripheral
         
-        if(peripheral.identifier.uuidString == serviceUUIDString){
-            //print("\(serviceUUIDString)のRSSI: \(RSSI)")
-            rssis.append(RSSI.intValue)
-        }
+        // リストへRSSIの値を保存する
+        rssis.append(RSSI.intValue)
+        
+        // 検出されたペリフェラルに接続を試みます。接続が成功した場合、centralManager(_:didConnect:)デリゲートメソッドが呼ばれ、失敗した場合はcentralManager(_:didFailToConnect:error:)が呼ばれます。
+        print("ペリフェラルへ接続を試みます")
+        central.connect(peripheral, options: nil)
+        print("検出したよ")
+        print(name)
+        print(peripheral.identifier.uuidString)
         
         //        if let rssiValue = advertisementData[CBAdvertisementDataRSSIKey] as? NSNumber {
         //            print("RSSI: \(rssiValue)")
         //        }
-        
-        
-        
-        //        検出されたペリフェラルに接続を試みます。接続が成功した場合、centralManager(_:didConnect:)デリゲートメソッドが呼ばれ、失敗した場合はcentralManager(_:didFailToConnect:error:)が呼ばれます。
-        //central.connect(peripheral, options: nil)
-        //        print(peripheral.identifier.uuidString)
-        //        print(peripheral.identifier.)
     }
     
     
-    // ペリフェラルに接続が成功した時、呼ばれるメソッドです。
+    //接続が成功した時に呼ばれるデリゲートメソッド
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         print("ペリフェラルと接続成功")
         isConnected = true
         peripheral.delegate = self
         
-        
-        
-        
-        //        リフェラルデバイスのReceived Signal Strength Indicator（RSSI）を読み取るために使用されます
-        //        peripheral(_:didReadRSSI:error:)デリゲートメソッドが呼び出されます
+        // リフェラルデバイスのReceived Signal Strength Indicator（RSSI）を読み取るために使用されます（peripheral(_:didReadRSSI:error:)デリゲートメソッドが呼び出されます）
         peripheral.readRSSI()
         
-        
-        
-        //         接続されたペリフェラルのサービスを探索します。
-        //        サービスが見つかった場合、peripheral(_:didDiscoverServices:)デリゲートメソッドが呼ばれます
+        // 接続されたペリフェラルのサービスを探索します。サービスが見つかった場合、peripheral(_:didDiscoverServices:)デリゲートメソッドが呼ばれます
         peripheral.discoverServices([serviceUUID])
         
-        
-        //タイマーが1秒ごとにトリガーされるたびに実行されるクロージャです。このクロージャは、ペリフェラルデバイスのreadRSSI()メソッドを呼び出してRSSIを読み取ります。
+        // タイマーが1秒ごとにトリガーされるたびに実行されるクロージャです。このクロージャは、ペリフェラルデバイスのreadRSSI()メソッドを呼び出してRSSIを読み取ります。
         rssiUpdateTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
             peripheral.readRSSI()}
     }
     
-    
-    
-    
-    
-    
-    //  ペリフェラルデバイスからRSSIが読み取られたときに、自動的に呼び出されます。
-    
+    // ペリフェラルデバイスからRSSIが読み取られたときに、自動的に呼び出されます。
     func peripheral(_ peripheral: CBPeripheral, didReadRSSI RSSI: NSNumber, error: Error?) {
         print("RSSIのエラーチェック")
         if let error = error {
@@ -133,14 +115,10 @@ class CentralManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPe
         centralManager.stopScan()
     }
     
-    
-    
-    
-    
     // ペリフェラルへの接続が失敗したときに呼ばれるメソッドです。
     func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
         isConnected = false
-        print("Failed to connect to peripheral")
+        print("ペリフェラルへの接続が失敗")
     }
     
     
@@ -148,9 +126,7 @@ class CentralManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPe
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
         isConnected = false
         print("Disconnected from peripheral")
-        
-        
-        //       切断時にタイマーを無効化する
+        //　切断時にタイマーを無効化する
         rssiUpdateTimer?.invalidate()
         rssiUpdateTimer = nil
         
@@ -159,17 +135,28 @@ class CentralManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPe
     
     // ペリフェラルのサービスが見つかったときに呼ばれるメソッドです。
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
-        
-        //        サービスの検出中に何らかのエラーが発生,エラー内容をログに出力し、メソッドの実行を終了
+
+        // サービスの検出中に何らかのエラーが発生,エラー内容をログに出力し、メソッドの実行を終了
         if let error = error {
             print("Error discovering services: \(error.localizedDescription)")
             return
         }
         if let services = peripheral.services {
             for service in services {
-                //                サービスに関連するcharacteristicを検索するためのメソッド（didDiscoverCharacteristicsForデリゲートメソッド）を呼び出します
+                // サービスに関連するcharacteristicを検索するためのメソッド（didDiscoverCharacteristicsForデリゲートメソッド）を呼び出します
                 peripheral.discoverCharacteristics([characteristicUUID], for: service)
             }
+        }
+    }
+    
+    //Notify or indicate or Read時に呼ばれる(バックグラウンド)
+    func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
+        print("Notify or indicate or Read時 バックグラウンドだよー")
+        
+        var timerCount = 0
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer  in
+            timerCount += 1
+            print("timer:\(timerCount)")
         }
     }
     

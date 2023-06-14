@@ -13,6 +13,7 @@
 		AB7CF3C22A15BEE90008558A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB7CF3C12A15BEE90008558A /* Preview Assets.xcassets */; };
 		ABAB5C052A303B4F003F0CBB /* CentralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAB5C042A303B4F003F0CBB /* CentralManager.swift */; };
 		ABAB5C072A3040CB003F0CBB /* PeripheralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAB5C062A3040CB003F0CBB /* PeripheralManager.swift */; };
+		ABAB5C0C2A36B545003F0CBB /* BackgroundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAB5C0B2A36B545003F0CBB /* BackgroundManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		AB7CF3C12A15BEE90008558A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		ABAB5C042A303B4F003F0CBB /* CentralManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CentralManager.swift; sourceTree = "<group>"; };
 		ABAB5C062A3040CB003F0CBB /* PeripheralManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeripheralManager.swift; sourceTree = "<group>"; };
+		ABAB5C0B2A36B545003F0CBB /* BackgroundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 			children = (
 				ABAB5C042A303B4F003F0CBB /* CentralManager.swift */,
 				ABAB5C062A3040CB003F0CBB /* PeripheralManager.swift */,
+				ABAB5C0B2A36B545003F0CBB /* BackgroundManager.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -161,6 +164,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABAB5C0C2A36B545003F0CBB /* BackgroundManager.swift in Sources */,
 				AB7CF3BD2A15BEE80008558A /* ContentView.swift in Sources */,
 				ABAB5C072A3040CB003F0CBB /* PeripheralManager.swift in Sources */,
 				AB7CF3BB2A15BEE80008558A /* StayWatchBeaconiOSApp.swift in Sources */,
@@ -297,6 +301,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = StayWatchBeaconiOS/Info.plist;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Bluetoothを使用します";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -327,6 +332,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = StayWatchBeaconiOS/Info.plist;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Bluetoothを使用します";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
