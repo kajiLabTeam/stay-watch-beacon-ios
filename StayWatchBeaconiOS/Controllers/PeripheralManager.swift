@@ -18,8 +18,6 @@ class PeripheralManager: NSObject, ObservableObject, CBPeripheralManagerDelegate
     @Published var isAdvertising = false
     // Bluetoothペリフェラルマネージャ
     var peripheralManager: CBPeripheralManager!
-    
-    var backgroundTaskID: UIBackgroundTaskIdentifier = UIBackgroundTaskIdentifier(rawValue: 0)
     // サービスとキャラクタリスティックのUUID
     let serviceUUID = CBUUID(string: "b37e1ccd-b930-a45e-abef-07f9232b5a80")
     let characteristicUUID = CBUUID(string: "b37e1ccd-b930-a45e-abef-07f9232b5a81")
@@ -27,29 +25,8 @@ class PeripheralManager: NSObject, ObservableObject, CBPeripheralManagerDelegate
     
     override init() {
         super.init()
-        peripheralManager = CBPeripheralManager(delegate: self, queue: nil)
+        peripheralManager = CBPeripheralManager(delegate: self, queue: nil, options: nil)
         
-    }
-    
-    
-    // アドバタイズを開始するメソッド
-    func startAdvertising() {
-        // サービスとキャラクタリスティックを作成し、ペリフェラルマネージャに追加
-        let service = CBMutableService(type: serviceUUID, primary: true)
-        let characteristic = CBMutableCharacteristic(type: characteristicUUID, properties: .write, value: nil, permissions: .writeable)
-        service.characteristics = [characteristic]
-        peripheralManager.add(service)
-        // アドバタイズ開始
-        print("アドバタイズ開始")
-        peripheralManager.startAdvertising([CBAdvertisementDataServiceUUIDsKey: [serviceUUID]])
-        isAdvertising = true
-    }
-    
-    // アドバタイズを終了するメソッド
-    func stopAdvertising() {
-        print("アドバタイズ終了")
-        peripheralManager.stopAdvertising()
-        isAdvertising = false
     }
     
     // ペリフェラルマネージャの状態が更新されたときに呼ばれるデリゲートメソッド
@@ -60,6 +37,33 @@ class PeripheralManager: NSObject, ObservableObject, CBPeripheralManagerDelegate
         } else {
             print("Peripheral Manager is not powered on.")
         }
+    }
+    
+    
+    // アドバタイズを開始するメソッド
+    func startAdvertising() {
+        // サービスとキャラクタリスティックを作成し、ペリフェラルマネージャに追加
+        let service = CBMutableService(type: serviceUUID, primary: true)
+        let characteristic = CBMutableCharacteristic(type: characteristicUUID, properties: .write, value: nil, permissions: .writeable)
+        service.characteristics = [characteristic]
+        peripheralManager.add(service)
+        let serviceUUIDs = [serviceUUID]
+        let advertisementData: [String: Any] = [
+            CBAdvertisementDataLocalNameKey: "kjlb-iPhone11pro",
+            CBAdvertisementDataServiceUUIDsKey: serviceUUIDs
+        ]
+        // アドバタイズ開始
+        print("アドバタイズ開始")
+        //peripheralManager.startAdvertising([CBAdvertisementDataServiceUUIDsKey: [serviceUUID]])
+        peripheralManager.startAdvertising(advertisementData)
+        isAdvertising = true
+    }
+
+    // アドバタイズを終了するメソッド
+    func stopAdvertising() {
+        print("アドバタイズ終了")
+        peripheralManager.stopAdvertising()
+        isAdvertising = false
     }
     
         // ペリフェラルマネージャの状態が更新されたときに呼ばれるデリゲートメソッド（バックグラウンド版）

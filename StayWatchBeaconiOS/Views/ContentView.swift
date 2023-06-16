@@ -62,7 +62,7 @@ struct ContentView: View {
 //                Text("未接続")
 //                    .font(.largeTitle)
 //            }
-            Text("据え置き型BLEビーコン")
+            Text(centralManager.serviceUUIDString)
 
 
 
@@ -100,6 +100,8 @@ struct ContentView: View {
                 Text(String(rssi))
             }
         }
+        
+        //
     }
 }
 

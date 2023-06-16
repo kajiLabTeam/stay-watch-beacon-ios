@@ -14,6 +14,8 @@
 		ABAB5C052A303B4F003F0CBB /* CentralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAB5C042A303B4F003F0CBB /* CentralManager.swift */; };
 		ABAB5C072A3040CB003F0CBB /* PeripheralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAB5C062A3040CB003F0CBB /* PeripheralManager.swift */; };
 		ABAB5C0C2A36B545003F0CBB /* BackgroundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAB5C0B2A36B545003F0CBB /* BackgroundManager.swift */; };
+		ABAB5C0E2A3BFA4B003F0CBB /* SampleCentral.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAB5C0D2A3BFA4B003F0CBB /* SampleCentral.swift */; };
+		ABAB5C102A3BFD5F003F0CBB /* SamplePeripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAB5C0F2A3BFD5F003F0CBB /* SamplePeripheral.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		ABAB5C042A303B4F003F0CBB /* CentralManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CentralManager.swift; sourceTree = "<group>"; };
 		ABAB5C062A3040CB003F0CBB /* PeripheralManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeripheralManager.swift; sourceTree = "<group>"; };
 		ABAB5C0B2A36B545003F0CBB /* BackgroundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundManager.swift; sourceTree = "<group>"; };
+		ABAB5C0D2A3BFA4B003F0CBB /* SampleCentral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleCentral.swift; sourceTree = "<group>"; };
+		ABAB5C0F2A3BFD5F003F0CBB /* SamplePeripheral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SamplePeripheral.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +86,8 @@
 				ABAB5C042A303B4F003F0CBB /* CentralManager.swift */,
 				ABAB5C062A3040CB003F0CBB /* PeripheralManager.swift */,
 				ABAB5C0B2A36B545003F0CBB /* BackgroundManager.swift */,
+				ABAB5C0D2A3BFA4B003F0CBB /* SampleCentral.swift */,
+				ABAB5C0F2A3BFD5F003F0CBB /* SamplePeripheral.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -165,8 +171,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				ABAB5C0C2A36B545003F0CBB /* BackgroundManager.swift in Sources */,
+				ABAB5C0E2A3BFA4B003F0CBB /* SampleCentral.swift in Sources */,
 				AB7CF3BD2A15BEE80008558A /* ContentView.swift in Sources */,
 				ABAB5C072A3040CB003F0CBB /* PeripheralManager.swift in Sources */,
+				ABAB5C102A3BFD5F003F0CBB /* SamplePeripheral.swift in Sources */,
 				AB7CF3BB2A15BEE80008558A /* StayWatchBeaconiOSApp.swift in Sources */,
 				ABAB5C052A303B4F003F0CBB /* CentralManager.swift in Sources */,
 			);
