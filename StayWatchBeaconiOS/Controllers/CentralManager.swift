@@ -17,11 +17,9 @@ class CentralManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPe
     var sumScanning = 0
     @Published var rssis:[Int] = []
     let serviceUUIDString = "b37e1ccd-b930-a45e-abef-07f9232b5a80"  // 見せるだけのやつ
-    //let serviceUUID = CBUUID(string: "0000feaa-0000-1000-8000-00805f9b34fb")
+    //let serviceUUID = CBUUID(string: "0000feaa-0000-1000-8000-00805f9b34fb")  // iBeaconのBLE
     let serviceUUID = CBUUID(string: "b37e1ccd-b930-a45e-abef-07f9232b5a80")    // iPhoneのBLE
     let characteristicUUID = CBUUID(string: "74278bda-b644-4520-8f0c-720eaf059935")
-    //let services: [CBUUID] = [CBUUID(string: "378d5538-f7f9-d4c0-2167-c5afcd226353")]
-    let services: [CBUUID] = [CBUUID(string: "b37e1ccd-b930-a45e-abef-07f9232b5a80")]   // iPhoneのBLE
     
     @Published var isOneMeterAway = false
     

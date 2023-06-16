@@ -101,22 +101,10 @@ struct ContentView: View {
             }
         }
         
-        //
+        // graph
+        ChartView(y:centralManager.rssis)
     }
 }
-
-// 初期のContentView
-//struct ContentView: View {
-//    var body: some View {
-//        VStack {
-//            Image(systemName: "globe")
-//                .imageScale(.large)
-//                .foregroundColor(.accentColor)
-//            Text("Hello, Beacon!!!")
-//        }
-//        .padding()
-//    }
-//}
 
 
 struct ContentView_Previews: PreviewProvider {

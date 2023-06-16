@@ -16,6 +16,7 @@
 		ABAB5C0C2A36B545003F0CBB /* BackgroundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAB5C0B2A36B545003F0CBB /* BackgroundManager.swift */; };
 		ABAB5C0E2A3BFA4B003F0CBB /* SampleCentral.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAB5C0D2A3BFA4B003F0CBB /* SampleCentral.swift */; };
 		ABAB5C102A3BFD5F003F0CBB /* SamplePeripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAB5C0F2A3BFD5F003F0CBB /* SamplePeripheral.swift */; };
+		ABAB5C122A3C8A45003F0CBB /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAB5C112A3C8A45003F0CBB /* ChartView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		ABAB5C0B2A36B545003F0CBB /* BackgroundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundManager.swift; sourceTree = "<group>"; };
 		ABAB5C0D2A3BFA4B003F0CBB /* SampleCentral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleCentral.swift; sourceTree = "<group>"; };
 		ABAB5C0F2A3BFD5F003F0CBB /* SamplePeripheral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SamplePeripheral.swift; sourceTree = "<group>"; };
+		ABAB5C112A3C8A45003F0CBB /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				AB7CF3BC2A15BEE80008558A /* ContentView.swift */,
+				ABAB5C112A3C8A45003F0CBB /* ChartView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -170,6 +173,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABAB5C122A3C8A45003F0CBB /* ChartView.swift in Sources */,
 				ABAB5C0C2A36B545003F0CBB /* BackgroundManager.swift in Sources */,
 				ABAB5C0E2A3BFA4B003F0CBB /* SampleCentral.swift in Sources */,
 				AB7CF3BD2A15BEE80008558A /* ContentView.swift in Sources */,
