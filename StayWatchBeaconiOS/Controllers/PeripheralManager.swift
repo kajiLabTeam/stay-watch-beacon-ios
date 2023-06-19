@@ -19,14 +19,16 @@ class PeripheralManager: NSObject, ObservableObject, CBPeripheralManagerDelegate
     // Bluetoothペリフェラルマネージャ
     var peripheralManager: CBPeripheralManager!
     // サービスとキャラクタリスティックのUUID
-    let serviceUUID = CBUUID(string: "b37e1ccd-b930-a45e-abef-07f9232b5a80")
+    let serviceUUID = CBUUID(string: "e7d61ea3-f8dd-49c8-8f2f-f24a0020002e")
     let characteristicUUID = CBUUID(string: "b37e1ccd-b930-a45e-abef-07f9232b5a81")
     
     
     override init() {
         super.init()
-        peripheralManager = CBPeripheralManager(delegate: self, queue: nil, options: nil)
-        
+        // let options: Dictionary = [CBPeripheralManagerOptionRestoreIdentifierKey: "staywatchPeripheralRestoreIdentifierKey"]
+        let options: Dictionary = [CBPeripheralManagerOptionRestoreIdentifierKey: "com.togawakouta.StayWatchBeaconiOS"]
+        peripheralManager = CBPeripheralManager(delegate: self, queue: nil, options: options)
+        // peripheralManager = CBPeripheralManager(delegate: self, queue: nil, options: nil)
     }
     
     // ペリフェラルマネージャの状態が更新されたときに呼ばれるデリゲートメソッド
@@ -34,6 +36,7 @@ class PeripheralManager: NSObject, ObservableObject, CBPeripheralManagerDelegate
         // ペリフェラルマネージャの状態に応じたメッセージを出力
         if peripheral.state == .poweredOn {
             print("Peripheral Manager is powered on.")
+            startAdvertising()
         } else {
             print("Peripheral Manager is not powered on.")
         }
@@ -85,6 +88,22 @@ class PeripheralManager: NSObject, ObservableObject, CBPeripheralManagerDelegate
         } else {
             print("Service added successfully.")
         }
+    }
+    
+    // 復元時に呼ばれる
+    func peripheralManager(_ peripheral: CBPeripheralManager, willRestoreState dict: [String : Any]) {
+        print("ペリフェラル復元: \(dict)")
+        startAdvertising()
+        
+        // バックグラウンドではローカル通知を発行
+//        if UIApplication.shared.applicationState != .active {
+//            let content = UNMutableNotificationContent()
+//            content.body = msg
+//            content.sound = .default
+//
+//            let request = UNNotificationRequest(identifier: "RestorationNotification", content: content, trigger: nil)
+//            UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+//        }
     }
     
     

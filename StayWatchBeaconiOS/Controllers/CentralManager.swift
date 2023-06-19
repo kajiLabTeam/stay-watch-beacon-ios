@@ -18,7 +18,7 @@ class CentralManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPe
     @Published var rssis:[Int] = []
     let serviceUUIDString = "b37e1ccd-b930-a45e-abef-07f9232b5a80"  // 見せるだけのやつ
     //let serviceUUID = CBUUID(string: "0000feaa-0000-1000-8000-00805f9b34fb")  // iBeaconのBLE
-    let serviceUUID = CBUUID(string: "b37e1ccd-b930-a45e-abef-07f9232b5a80")    // iPhoneのBLE
+    let serviceUUID = CBUUID(string: "e7d61ea3-f8dd-49c8-8f2f-f24a0020002e")    // iPhoneのBLE
     let characteristicUUID = CBUUID(string: "74278bda-b644-4520-8f0c-720eaf059935")
     
     @Published var isOneMeterAway = false
