@@ -69,17 +69,6 @@ class PeripheralManager: NSObject, ObservableObject, CBPeripheralManagerDelegate
         isAdvertising = false
     }
     
-        // ペリフェラルマネージャの状態が更新されたときに呼ばれるデリゲートメソッド（バックグラウンド版）
-//        func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
-//            // ペリフェラルマネージャの状態に応じたメッセージを出力
-//            if peripheral.state == .poweredOn {
-//                print("Peripheral Manager is powered on.")
-//                startAdvertising() // バックグラウンドでもアドバタイズを開始
-//            } else {
-//                print("Peripheral Manager is not powered on.")
-//            }
-//        }
-    //
     // サービスが追加されたときに呼ばれるデリゲートメソッド
     func peripheralManager(_ peripheral: CBPeripheralManager, didAdd service: CBService, error: Error?) {
         // エラーがある場合はエラー内容を出力、なければ成功メッセージを出力
@@ -94,32 +83,6 @@ class PeripheralManager: NSObject, ObservableObject, CBPeripheralManagerDelegate
     func peripheralManager(_ peripheral: CBPeripheralManager, willRestoreState dict: [String : Any]) {
         print("ペリフェラル復元: \(dict)")
         startAdvertising()
-        
-        // バックグラウンドではローカル通知を発行
-//        if UIApplication.shared.applicationState != .active {
-//            let content = UNMutableNotificationContent()
-//            content.body = msg
-//            content.sound = .default
-//
-//            let request = UNNotificationRequest(identifier: "RestorationNotification", content: content, trigger: nil)
-//            UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
-//        }
     }
-    
-    
-//        func applicationWillResignActive(_ application: UIApplication) {
-//            print("バックグラウンドになったよ")
-//            // バックグラウンドで行いたい処理があるとき
-//            backgroundTaskID = application.beginBackgroundTask(expirationHandler: {
-//                [weak self] in
-//                application.endBackgroundTask((self?.backgroundTaskID)!)
-//                self?.backgroundTaskID = UIBackgroundTaskIdentifier.invalid
-//            })
-//        }
-//
-//        func applicationDidBecomeActive(_ application: UIApplication) {
-//            // タスクの解除
-//            application.endBackgroundTask(backgroundTaskID)
-//        }
 }
 
