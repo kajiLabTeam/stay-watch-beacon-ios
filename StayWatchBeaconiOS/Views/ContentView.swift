@@ -14,28 +14,11 @@ struct ContentView: View {
     
     @StateObject var centralManager = CentralManager()
     @StateObject var peripheralManager = PeripheralManager()
-    @StateObject var backgroundManager = BackgroundManager()
 
     var body: some View {
         // Argument
         VStack {
             Text(argument)
-        }
-        // Background
-        VStack {
-            Button(action: {
-                backgroundManager.getTasks()
-            }) {
-                Text("スケジュール一覧")
-                    .font(.title)
-            }
-            Button(action: {
-                print("スケジュール予約ボタンが押されたよ")
-                backgroundManager.createSchedule()
-            }) {
-                Text("スケジュール予約")
-                    .font(.title)
-            }
         }
         // Peripheral
         VStack {
