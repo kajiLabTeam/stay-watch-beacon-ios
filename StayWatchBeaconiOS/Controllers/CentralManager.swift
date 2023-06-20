@@ -16,10 +16,10 @@ class CentralManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPe
     var peripheral: CBPeripheral?
     var sumScanning = 0
     @Published var rssis:[Int] = []
-    let serviceUUIDString = "b37e1ccd-b930-a45e-abef-07f9232b5a80"  // 見せるだけのやつ
+    let serviceUUIDString = "e7d61ea3-f8dd-49c8-8f2f-f24a0020002e"  // 見せるだけのやつ
     //let serviceUUID = CBUUID(string: "0000feaa-0000-1000-8000-00805f9b34fb")  // iBeaconのBLE
     let serviceUUID = CBUUID(string: "e7d61ea3-f8dd-49c8-8f2f-f24a0020002e")    // iPhoneのBLE
-    let characteristicUUID = CBUUID(string: "74278bda-b644-4520-8f0c-720eaf059935")
+    let characteristicUUID = CBUUID(string: "74278bda-b644-4520-8f0c-720eaf059935") // 今回はUUIDの形式ならなんでもよい
     
     @Published var isOneMeterAway = false
     
@@ -76,16 +76,5 @@ class CentralManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPe
         print("受信終了")
         isScanning = false
         centralManager.stopScan()
-    }
-    
-    //Notify or indicate or Read時に呼ばれる(バックグラウンド)
-    func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
-        print("Notify or indicate or Read時 バックグラウンドだよー")
-        
-        var timerCount = 0
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer  in
-            timerCount += 1
-            print("timer:\(timerCount)")
-        }
     }
 }

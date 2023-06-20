@@ -14,34 +14,14 @@ struct ContentView: View {
     
     @StateObject var centralManager = CentralManager()
     @StateObject var peripheralManager = PeripheralManager()
-    @StateObject var backgroundManager = BackgroundManager()
 
     var body: some View {
         // Argument
         VStack {
             Text(argument)
         }
-        // Background
-        VStack {
-            Button(action: {
-                backgroundManager.getTasks()
-            }) {
-                Text("スケジュール一覧")
-                    .font(.title)
-            }
-            Button(action: {
-                print("スケジュール予約ボタンが押されたよ")
-                backgroundManager.createSchedule()
-            }) {
-                Text("スケジュール予約")
-                    .font(.title)
-            }
-        }
         // Peripheral
         VStack {
-            Text("Countしないよ")
-                .font(.largeTitle)
-                .padding(10)
             Button(action: {
                 if peripheralManager.isAdvertising {
                     peripheralManager.stopAdvertising()
@@ -55,32 +35,9 @@ struct ContentView: View {
         }
         // Central
         VStack {
-//            if centralManager.isConnected {
-//                Text("接続済み")
-//                    .font(.largeTitle)
-//            } else {
-//                Text("未接続")
-//                    .font(.largeTitle)
-//            }
             Text(centralManager.serviceUUIDString)
 
-
-
-//            if centralManager.isOneMeterAway {
-//                Text("1メートル以内です")
-//                    .font(.headline)
-//            } else {
-//                Text("1メートル以上離れています")
-//                    .font(.headline)
-//            }
-
-
             Button(action: {
-//                if centralManager.isConnected {
-//                    centralManager.incrementCounter()
-//                } else {
-//                    centralManager.startScanning()
-//                }
                 if centralManager.isScanning {
                     centralManager.stopScanning()
                 }else{

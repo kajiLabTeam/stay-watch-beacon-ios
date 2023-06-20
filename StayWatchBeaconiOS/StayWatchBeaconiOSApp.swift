@@ -14,15 +14,5 @@ struct StayWatchBeaconiOSApp: App {
         WindowGroup {
             ContentView(argument: text)
         }
-        .backgroundTask(.appRefresh("com.togawakouta.StayWatchBeaconiOS.appRefresh")) {
-            await scheduleTestNotification()
-//            await DataFetchHelper.shared.startRequestingRemoteData()
-        }
-    }
-    
-    func scheduleTestNotification() async {
-        
-        print("1分後に起きる処理が実行されたよ")
-        text = "Background OK"
     }
 }
