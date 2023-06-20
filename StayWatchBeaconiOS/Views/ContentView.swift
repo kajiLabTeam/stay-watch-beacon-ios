@@ -8,17 +8,40 @@
 import SwiftUI
 import CoreBluetooth
 
-
 // Centralを見るためのContentView
 struct ContentView: View {
+    var argument: String
+    
     @StateObject var centralManager = CentralManager()
     @StateObject var peripheralManager = PeripheralManager()
+    @StateObject var backgroundManager = BackgroundManager()
 
     var body: some View {
+        // Argument
+        VStack {
+            Text(argument)
+        }
+        // Background
+        VStack {
+            Button(action: {
+                backgroundManager.getTasks()
+            }) {
+                Text("スケジュール一覧")
+                    .font(.title)
+            }
+            Button(action: {
+                print("スケジュール予約ボタンが押されたよ")
+                backgroundManager.createSchedule()
+            }) {
+                Text("スケジュール予約")
+                    .font(.title)
+            }
+        }
         // Peripheral
         VStack {
             Text("Countしないよ")
                 .font(.largeTitle)
+                .padding(10)
             Button(action: {
                 if peripheralManager.isAdvertising {
                     peripheralManager.stopAdvertising()
@@ -39,7 +62,7 @@ struct ContentView: View {
 //                Text("未接続")
 //                    .font(.largeTitle)
 //            }
-            Text("据え置き型BLEビーコン")
+            Text(centralManager.serviceUUIDString)
 
 
 
@@ -77,25 +100,16 @@ struct ContentView: View {
                 Text(String(rssi))
             }
         }
+        
+        // graph
+        ChartView(y:centralManager.rssis)
     }
 }
 
-// 初期のContentView
-//struct ContentView: View {
-//    var body: some View {
-//        VStack {
-//            Image(systemName: "globe")
-//                .imageScale(.large)
-//                .foregroundColor(.accentColor)
-//            Text("Hello, Beacon!!!")
-//        }
-//        .padding()
-//    }
-//}
-
 
 struct ContentView_Previews: PreviewProvider {
+    private var argument = "hello previews"
     static var previews: some View {
-        ContentView()
+        ContentView(argument: "Hello previews")
     }
 }
