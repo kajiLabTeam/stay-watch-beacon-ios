@@ -16,10 +16,14 @@ class PeripheralManager: NSObject, ObservableObject, CBPeripheralManagerDelegate
     //     カウントを管理するPublishedプロパティ
     @Published var count = 0
     @Published var isAdvertising = false
+    @Published var serviceUUIDStr = "e7d61ea3-f8dd-49c8-8f2f-f24a0020002e"
+    @Published var advertisingServiceUUIDStr = "e7d61ea3-f8dd-49c8-8f2f-f24a0020002e"
     // Bluetoothペリフェラルマネージャ
     var peripheralManager: CBPeripheralManager!
     // サービスとキャラクタリスティックのUUID
-    let serviceUUID = CBUUID(string: "e7d61ea3-f8dd-49c8-8f2f-f24a0020002e")
+    //let serviceUUID = CBUUID(string: "e7d61ea3-f8dd-49c8-8f2f-f24a0020002e")
+    //let serviceUUID = CBUUID(string: "00000000-0000-0000-0000-000000000012")
+    //let serviceUUID = CBUUID(string: "11f11111-1f60-1aa6-17b1-111111111111")
     let characteristicUUID = CBUUID(string: "b37e1ccd-b930-a45e-abef-07f9232b5a81")
     
     
@@ -36,7 +40,8 @@ class PeripheralManager: NSObject, ObservableObject, CBPeripheralManagerDelegate
         // ペリフェラルマネージャの状態に応じたメッセージを出力
         if peripheral.state == .poweredOn {
             print("Peripheral Manager is powered on.")
-            startAdvertising()
+            startAdvertisingWithOption()
+            //startAdvertising(advertisementData: [String : "b37e1ccd-b930-a45e-abef-07f9232b5a81"])
         } else {
             print("Peripheral Manager is not powered on.")
         }
@@ -44,13 +49,13 @@ class PeripheralManager: NSObject, ObservableObject, CBPeripheralManagerDelegate
     
     
     // アドバタイズを開始するメソッド
-    func startAdvertising() {
+    func startAdvertisingWithOption() {
         // サービスとキャラクタリスティックを作成し、ペリフェラルマネージャに追加
-        let service = CBMutableService(type: serviceUUID, primary: true)
+        let service = CBMutableService(type: CBUUID(string:serviceUUIDStr), primary: true)
         let characteristic = CBMutableCharacteristic(type: characteristicUUID, properties: .write, value: nil, permissions: .writeable)
         service.characteristics = [characteristic]
         peripheralManager.add(service)
-        let serviceUUIDs = [serviceUUID]
+        let serviceUUIDs = [CBUUID(string:serviceUUIDStr)]
         let advertisementData: [String: Any] = [
             CBAdvertisementDataLocalNameKey: "kjlb-iPhone11pro",
             CBAdvertisementDataServiceUUIDsKey: serviceUUIDs
@@ -60,6 +65,7 @@ class PeripheralManager: NSObject, ObservableObject, CBPeripheralManagerDelegate
         //peripheralManager.startAdvertising([CBAdvertisementDataServiceUUIDsKey: [serviceUUID]])
         peripheralManager.startAdvertising(advertisementData)
         isAdvertising = true
+        advertisingServiceUUIDStr = serviceUUIDStr
     }
 
     // アドバタイズを終了するメソッド
@@ -82,7 +88,6 @@ class PeripheralManager: NSObject, ObservableObject, CBPeripheralManagerDelegate
     // 復元時に呼ばれる
     func peripheralManager(_ peripheral: CBPeripheralManager, willRestoreState dict: [String : Any]) {
         print("ペリフェラル復元: \(dict)")
-        startAdvertising()
     }
 }
 

@@ -14,6 +14,10 @@
 		ABAB5C052A303B4F003F0CBB /* CentralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAB5C042A303B4F003F0CBB /* CentralManager.swift */; };
 		ABAB5C072A3040CB003F0CBB /* PeripheralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAB5C062A3040CB003F0CBB /* PeripheralManager.swift */; };
 		ABAB5C122A3C8A45003F0CBB /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAB5C112A3C8A45003F0CBB /* ChartView.swift */; };
+		ABAB5C152A429AAF003F0CBB /* UserState.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAB5C142A429AAF003F0CBB /* UserState.swift */; };
+		ABAB5C172A429D4D003F0CBB /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAB5C162A429D4D003F0CBB /* UserView.swift */; };
+		ABAB5C192A45E14B003F0CBB /* SigninView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAB5C182A45E14B003F0CBB /* SigninView.swift */; };
+		ABAB5C1B2A45E25F003F0CBB /* BleTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAB5C1A2A45E25F003F0CBB /* BleTestView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +30,10 @@
 		ABAB5C042A303B4F003F0CBB /* CentralManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CentralManager.swift; sourceTree = "<group>"; };
 		ABAB5C062A3040CB003F0CBB /* PeripheralManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeripheralManager.swift; sourceTree = "<group>"; };
 		ABAB5C112A3C8A45003F0CBB /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
+		ABAB5C142A429AAF003F0CBB /* UserState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserState.swift; sourceTree = "<group>"; };
+		ABAB5C162A429D4D003F0CBB /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
+		ABAB5C182A45E14B003F0CBB /* SigninView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninView.swift; sourceTree = "<group>"; };
+		ABAB5C1A2A45E25F003F0CBB /* BleTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BleTestView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +66,7 @@
 		AB7CF3B92A15BEE80008558A /* StayWatchBeaconiOS */ = {
 			isa = PBXGroup;
 			children = (
+				ABAB5C132A429A99003F0CBB /* Models */,
 				ABAB5C032A3039D0003F0CBB /* Views */,
 				ABAB5C022A3039BB003F0CBB /* Controllers */,
 				AB42A22E2A249CEE00C9D46F /* Info.plist */,
@@ -90,8 +99,19 @@
 			children = (
 				AB7CF3BC2A15BEE80008558A /* ContentView.swift */,
 				ABAB5C112A3C8A45003F0CBB /* ChartView.swift */,
+				ABAB5C162A429D4D003F0CBB /* UserView.swift */,
+				ABAB5C182A45E14B003F0CBB /* SigninView.swift */,
+				ABAB5C1A2A45E25F003F0CBB /* BleTestView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		ABAB5C132A429A99003F0CBB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				ABAB5C142A429AAF003F0CBB /* UserState.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -166,9 +186,13 @@
 			files = (
 				ABAB5C122A3C8A45003F0CBB /* ChartView.swift in Sources */,
 				AB7CF3BD2A15BEE80008558A /* ContentView.swift in Sources */,
+				ABAB5C152A429AAF003F0CBB /* UserState.swift in Sources */,
 				ABAB5C072A3040CB003F0CBB /* PeripheralManager.swift in Sources */,
 				AB7CF3BB2A15BEE80008558A /* StayWatchBeaconiOSApp.swift in Sources */,
 				ABAB5C052A303B4F003F0CBB /* CentralManager.swift in Sources */,
+				ABAB5C192A45E14B003F0CBB /* SigninView.swift in Sources */,
+				ABAB5C1B2A45E25F003F0CBB /* BleTestView.swift in Sources */,
+				ABAB5C172A429D4D003F0CBB /* UserView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

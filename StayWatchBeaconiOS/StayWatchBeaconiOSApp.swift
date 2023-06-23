@@ -9,10 +9,9 @@ import SwiftUI
 
 @main
 struct StayWatchBeaconiOSApp: App {
-    @State private var text = "Hello, World!"
     var body: some Scene {
         WindowGroup {
-            ContentView(argument: text)
+            ContentView()
         }
     }
 }
