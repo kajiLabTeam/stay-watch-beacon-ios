@@ -48,6 +48,7 @@
 		ABAB5C772A492BD4003F0CBB /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = ABAB5C762A492BD4003F0CBB /* FirebaseStorageCombine-Community */; };
 		ABAB5C7A2A492D6D003F0CBB /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = ABAB5C792A492D6D003F0CBB /* GoogleSignIn */; };
 		ABAB5C7C2A492D6D003F0CBB /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = ABAB5C7B2A492D6D003F0CBB /* GoogleSignInSwift */; };
+		ABAB5C7E2A49523B003F0CBB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ABAB5C7D2A49523B003F0CBB /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,6 +66,7 @@
 		ABAB5C182A45E14B003F0CBB /* SigninView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninView.swift; sourceTree = "<group>"; };
 		ABAB5C1A2A45E25F003F0CBB /* BleTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BleTestView.swift; sourceTree = "<group>"; };
 		ABAB5C1C2A45E4CA003F0CBB /* TestSigninManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSigninManager.swift; sourceTree = "<group>"; };
+		ABAB5C7D2A49523B003F0CBB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +128,7 @@
 		AB7CF3B92A15BEE80008558A /* StayWatchBeaconiOS */ = {
 			isa = PBXGroup;
 			children = (
+				ABAB5C7D2A49523B003F0CBB /* GoogleService-Info.plist */,
 				ABAB5C132A429A99003F0CBB /* Models */,
 				ABAB5C032A3039D0003F0CBB /* Views */,
 				ABAB5C022A3039BB003F0CBB /* Controllers */,
@@ -270,6 +273,7 @@
 			files = (
 				AB7CF3C22A15BEE90008558A /* Preview Assets.xcassets in Resources */,
 				AB7CF3BF2A15BEE90008558A /* Assets.xcassets in Resources */,
+				ABAB5C7E2A49523B003F0CBB /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
