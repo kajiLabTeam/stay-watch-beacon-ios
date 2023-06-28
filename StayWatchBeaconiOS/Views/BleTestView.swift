@@ -70,7 +70,7 @@ struct BleTestView: View {
         }
         
         // graph
-        ChartView(y:centralManager.rssis)
+        ChartView(y:centralManager.rssis, intervalSec:centralManager.intervalSec)
     }
 }
 

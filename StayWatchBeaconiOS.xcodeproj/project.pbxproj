@@ -49,6 +49,10 @@
 		ABAB5C7A2A492D6D003F0CBB /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = ABAB5C792A492D6D003F0CBB /* GoogleSignIn */; };
 		ABAB5C7C2A492D6D003F0CBB /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = ABAB5C7B2A492D6D003F0CBB /* GoogleSignInSwift */; };
 		ABAB5C7E2A49523B003F0CBB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ABAB5C7D2A49523B003F0CBB /* GoogleService-Info.plist */; };
+		ABAB5C802A4C0B0B003F0CBB /* OpenCampusBasicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAB5C7F2A4C0B0B003F0CBB /* OpenCampusBasicView.swift */; };
+		ABAB5C822A4C0BF7003F0CBB /* CentralOcBasicManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAB5C812A4C0BF7003F0CBB /* CentralOcBasicManager.swift */; };
+		ABAB5C842A4C1612003F0CBB /* CentralOcWheelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAB5C832A4C1612003F0CBB /* CentralOcWheelManager.swift */; };
+		ABAB5C862A4C1640003F0CBB /* OpenCampusWheelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAB5C852A4C1640003F0CBB /* OpenCampusWheelView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +71,10 @@
 		ABAB5C1A2A45E25F003F0CBB /* BleTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BleTestView.swift; sourceTree = "<group>"; };
 		ABAB5C1C2A45E4CA003F0CBB /* TestSigninManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSigninManager.swift; sourceTree = "<group>"; };
 		ABAB5C7D2A49523B003F0CBB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../GoogleService-Info.plist"; sourceTree = "<group>"; };
+		ABAB5C7F2A4C0B0B003F0CBB /* OpenCampusBasicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenCampusBasicView.swift; sourceTree = "<group>"; };
+		ABAB5C812A4C0BF7003F0CBB /* CentralOcBasicManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CentralOcBasicManager.swift; sourceTree = "<group>"; };
+		ABAB5C832A4C1612003F0CBB /* CentralOcWheelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CentralOcWheelManager.swift; sourceTree = "<group>"; };
+		ABAB5C852A4C1640003F0CBB /* OpenCampusWheelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenCampusWheelView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +162,8 @@
 				ABAB5C042A303B4F003F0CBB /* CentralManager.swift */,
 				ABAB5C062A3040CB003F0CBB /* PeripheralManager.swift */,
 				ABAB5C1C2A45E4CA003F0CBB /* TestSigninManager.swift */,
+				ABAB5C812A4C0BF7003F0CBB /* CentralOcBasicManager.swift */,
+				ABAB5C832A4C1612003F0CBB /* CentralOcWheelManager.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -166,6 +176,8 @@
 				ABAB5C162A429D4D003F0CBB /* UserView.swift */,
 				ABAB5C182A45E14B003F0CBB /* SigninView.swift */,
 				ABAB5C1A2A45E25F003F0CBB /* BleTestView.swift */,
+				ABAB5C7F2A4C0B0B003F0CBB /* OpenCampusBasicView.swift */,
+				ABAB5C852A4C1640003F0CBB /* OpenCampusWheelView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -286,13 +298,17 @@
 			files = (
 				ABAB5C122A3C8A45003F0CBB /* ChartView.swift in Sources */,
 				AB7CF3BD2A15BEE80008558A /* ContentView.swift in Sources */,
+				ABAB5C802A4C0B0B003F0CBB /* OpenCampusBasicView.swift in Sources */,
 				ABAB5C152A429AAF003F0CBB /* UserState.swift in Sources */,
 				ABAB5C072A3040CB003F0CBB /* PeripheralManager.swift in Sources */,
 				AB7CF3BB2A15BEE80008558A /* StayWatchBeaconiOSApp.swift in Sources */,
 				ABAB5C052A303B4F003F0CBB /* CentralManager.swift in Sources */,
+				ABAB5C862A4C1640003F0CBB /* OpenCampusWheelView.swift in Sources */,
+				ABAB5C842A4C1612003F0CBB /* CentralOcWheelManager.swift in Sources */,
 				ABAB5C192A45E14B003F0CBB /* SigninView.swift in Sources */,
 				ABAB5C1D2A45E4CA003F0CBB /* TestSigninManager.swift in Sources */,
 				ABAB5C1B2A45E25F003F0CBB /* BleTestView.swift in Sources */,
+				ABAB5C822A4C0BF7003F0CBB /* CentralOcBasicManager.swift in Sources */,
 				ABAB5C172A429D4D003F0CBB /* UserView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

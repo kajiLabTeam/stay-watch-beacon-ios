@@ -11,20 +11,21 @@ import Charts
 struct PointsData: Identifiable {
     // 点群データの構造体
     
-    var xValue: Int
+    var xValue: Double
     var yValue: Int
     var id = UUID()
 }
 
 struct ChartView: View {
     var y: [Int]
+    var intervalSec: Double
     
-    // データを定義
-    @State var data: [PointsData] = [
-        .init(xValue: 0, yValue: 5),
-        .init(xValue: 1, yValue: 4)
-    ]
-    
+    // sampleデータを定義
+//    @State var data: [PointsData] = [
+//        .init(xValue: 0, yValue: 5),
+//        .init(xValue: 1, yValue: 4)
+//    ]
+//
     @State var plotRange = 30   // 範囲を変えたいときはここと
     
     
@@ -33,7 +34,7 @@ struct ChartView: View {
             Chart {
                 ForEach(y.indices, id: \.self) { index in
                     // 折れ線グラフをプロット
-                    let xValue = index
+                    let xValue = Double(index) * intervalSec
                     let yValue = y[index]
                     
                     LineMark(
@@ -42,13 +43,14 @@ struct ChartView: View {
                     )
                 }
             }
-            .chartXScale(domain: y.count-30 ... y.count)
+            .chartXScale(domain: (Double(y.count) * intervalSec) - Double(plotRange) ... Double(y.count) * intervalSec)
+            .chartYScale(domain: -100 ... 0)
         }
     }
 }
 
-struct ChartView_Previews: PreviewProvider {
-    static var previews: some View {
-        ChartView(y: [5, 4])
-    }
-}
+//struct ChartView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ChartView(y: [5, 4])
+//    }
+//}
