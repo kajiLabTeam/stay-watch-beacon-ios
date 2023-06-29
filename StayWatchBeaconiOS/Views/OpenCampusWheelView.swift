@@ -17,6 +17,6 @@ struct OpenCampusWheelView: View {
     
     var body: some View {
         // graph
-        ChartView(y:centralManager.rssis, intervalSec:centralManager.intervalSec)
+        ChartDualView(yWheel:centralManager.rssisWheel,yPerson:centralManager.rssisPerson, intervalSec:centralManager.intervalSec)
     }
 }

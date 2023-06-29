@@ -12,15 +12,18 @@ import CoreBluetooth
 class CentralOcWheelManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     @Published var isConnected = false
     @Published var isScanning = false
-    @Published var currentRssi = 0
-    @Published var pastRssi = 0
+    @Published var currentWheelRssi = 0
+    @Published var currentPersonRssi = 0
+    @Published var pastWheelRssi = 0
+    @Published var pastPersonRssi = 0
     @Published var intervalSec = 0.5
     @Published var currentTime = 0
     var centralManager: CBCentralManager!
     var peripheral: CBPeripheral?
     var sumScanning = 0
     var scanTimer: Timer?
-    @Published var rssis:[Int] = []
+    @Published var rssisWheel:[Int] = []
+    @Published var rssisPerson:[Int] = []
     let serviceUUIDString = "e7d61ea3-f8dd-49c8-8f2f-f24a0020002e"  // 見せるだけのやつ
     let serviceUUID = CBUUID(string: "0000feaa-0000-1000-8000-00805f9b34fb")  // BP108
     //let serviceUUID = CBUUID(string: "e7d61ea3-f8dd-49c8-8f2f-f24a0020002e")    // iPhoneのBLE
@@ -70,46 +73,20 @@ class CentralOcWheelManager: NSObject, ObservableObject, CBCentralManagerDelegat
     
     // ペリフェラルを検出したときに呼ばれるメソッドです。サービス見つかった時に呼ばれるデリゲートメソッド
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String: Any], rssi RSSI: NSNumber) {
-        //FCS-1301でやる場合
-        //        if(peripheral.identifier.uuidString == "6FFD20E4-6260-944E-5A75-9D3EA9063815"){
-        //            //print("ペリフェラル（送信機）を検出したよ")
-        //            let uuid = peripheral.identifier.uuidString
-        //            //let name = peripheral.name
-        //            print(RSSI.intValue)
-        //            print(uuid)
-        //            //print(advertisementData[CBAdvertisementDataOverflowServiceUUIDsKey])
-        //
-        //
-        //            if let serviceUUIDs = advertisementData[CBAdvertisementDataServiceUUIDsKey] as? [CBUUID] {
-        //                for uuid in serviceUUIDs {
-        //                    print("Service UUID: \(uuid.uuidString)")
-        //                }
-        //            }
-        //            self.peripheral = peripheral
-        //
-        //            // 現在のRSSIの値を保存
-        //            currentRssi = RSSI.intValue
-        //        }
         
-        // BP108でやる場合
-        if(peripheral.identifier.uuidString == "FDF8AF2F-D064-46CB-29F7-688078606E16"){
-            //print("ペリフェラル（送信機）を検出したよ")
-            let uuid = peripheral.identifier.uuidString
-            //let name = peripheral.name
-            print(RSSI.intValue)
-            print(uuid)
-            //print(advertisementData[CBAdvertisementDataOverflowServiceUUIDsKey])
-            
-            
-            if let serviceUUIDs = advertisementData[CBAdvertisementDataServiceUUIDsKey] as? [CBUUID] {
-                for uuid in serviceUUIDs {
-                    print("Service UUID: \(uuid.uuidString)")
-                }
-            }
-            self.peripheral = peripheral
+        // タイヤにつけたビーコン
+        if(peripheral.identifier.uuidString == "C9FF8825-C590-C4BE-FE22-83F008E7B9FA"){
+            print("タイヤ：\(RSSI.intValue)")
             
             // 現在のRSSIの値を保存
-            currentRssi = RSSI.intValue
+            currentWheelRssi = RSSI.intValue
+        }
+        // 介護者のビーコン
+        if(peripheral.identifier.uuidString == "7FB3D0FA-D610-89C4-1482-FE45364C90A5"){
+            print("介護者：\(RSSI.intValue)")
+            
+            // 現在のRSSIの値を保存
+            currentPersonRssi = RSSI.intValue
         }
     }
     
@@ -121,9 +98,11 @@ class CentralOcWheelManager: NSObject, ObservableObject, CBCentralManagerDelegat
         
         currentTime = currentTime + 1
         // RSSIの配列に入れる
-        rssis.append((currentRssi + pastRssi) / 2)
+        rssisWheel.append((currentWheelRssi + pastWheelRssi) / 2)
+        rssisPerson.append((currentPersonRssi + pastPersonRssi) / 2)
         
-        pastRssi = currentRssi
+        pastWheelRssi = currentWheelRssi
+        pastPersonRssi = currentPersonRssi
         scanTimer?.invalidate()
         scanTimer = nil
         startScanning()

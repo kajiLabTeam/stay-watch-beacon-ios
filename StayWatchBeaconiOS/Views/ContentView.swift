@@ -20,8 +20,9 @@ struct ContentView: View {
                     Text("オーキャン（BLEの紹介）")
                         .padding(5)
                 }
-                NavigationLink(destination: BleTestView(argument: "Hello previews")){
+                NavigationLink(destination: OpenCampusWheelView()){
                     Text("オーキャン（車椅子への応用）")
+                        .padding(5)
                 }
                 NavigationLink(destination: BleTestView(argument: "Hello previews")){
                     Text("BLEテスト画面へ")

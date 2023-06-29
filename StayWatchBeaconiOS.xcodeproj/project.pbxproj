@@ -53,6 +53,7 @@
 		ABAB5C822A4C0BF7003F0CBB /* CentralOcBasicManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAB5C812A4C0BF7003F0CBB /* CentralOcBasicManager.swift */; };
 		ABAB5C842A4C1612003F0CBB /* CentralOcWheelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAB5C832A4C1612003F0CBB /* CentralOcWheelManager.swift */; };
 		ABAB5C862A4C1640003F0CBB /* OpenCampusWheelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAB5C852A4C1640003F0CBB /* OpenCampusWheelView.swift */; };
+		ABAB5C882A4C1730003F0CBB /* ChartDualView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAB5C872A4C1730003F0CBB /* ChartDualView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,6 +76,7 @@
 		ABAB5C812A4C0BF7003F0CBB /* CentralOcBasicManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CentralOcBasicManager.swift; sourceTree = "<group>"; };
 		ABAB5C832A4C1612003F0CBB /* CentralOcWheelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CentralOcWheelManager.swift; sourceTree = "<group>"; };
 		ABAB5C852A4C1640003F0CBB /* OpenCampusWheelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenCampusWheelView.swift; sourceTree = "<group>"; };
+		ABAB5C872A4C1730003F0CBB /* ChartDualView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartDualView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +180,7 @@
 				ABAB5C1A2A45E25F003F0CBB /* BleTestView.swift */,
 				ABAB5C7F2A4C0B0B003F0CBB /* OpenCampusBasicView.swift */,
 				ABAB5C852A4C1640003F0CBB /* OpenCampusWheelView.swift */,
+				ABAB5C872A4C1730003F0CBB /* ChartDualView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -310,6 +313,7 @@
 				ABAB5C1B2A45E25F003F0CBB /* BleTestView.swift in Sources */,
 				ABAB5C822A4C0BF7003F0CBB /* CentralOcBasicManager.swift in Sources */,
 				ABAB5C172A429D4D003F0CBB /* UserView.swift in Sources */,
+				ABAB5C882A4C1730003F0CBB /* ChartDualView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

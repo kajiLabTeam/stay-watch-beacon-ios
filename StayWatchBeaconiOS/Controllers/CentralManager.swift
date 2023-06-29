@@ -30,7 +30,7 @@ class CentralManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPe
     @Published var isOneMeterAway = false
     
     
-    var rssiUpdateTimer: Timer?
+    //var rssiUpdateTimer: Timer?
     
     
     
@@ -87,14 +87,14 @@ class CentralManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPe
             self.peripheral = peripheral
             
             // リストへRSSIの値を保存する
-            //rssis.append(RSSI.intValue)
+            rssis.append(RSSI.intValue)
             
             // 現在のRSSIの値を保存
-            currentRssi = RSSI.intValue
+            //currentRssi = RSSI.intValue
             
             // スキャンを停止する
-//            stopScanning()
-//            startScanning()
+            stopScanning()
+            startScanning()
         }
     }
     
@@ -104,13 +104,13 @@ class CentralManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPe
         isScanning = false
         centralManager.stopScan()
         
-        currentTime = currentTime + 1
+        //currentTime = currentTime + 1
         // RSSIの配列に入れる
-        rssis.append((currentRssi + pastRssi) / 2)
+        //rssis.append((currentRssi + pastRssi) / 2)
         
-        pastRssi = currentRssi
-        scanTimer?.invalidate()
-        scanTimer = nil
-        startScanning()
+//        pastRssi = currentRssi
+//        scanTimer?.invalidate()
+//        scanTimer = nil
+        //startScanning()
     }
 }
