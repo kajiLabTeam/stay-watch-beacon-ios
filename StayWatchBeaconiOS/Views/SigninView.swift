@@ -12,6 +12,15 @@ import FirebaseCore
 import FirebaseAuth
 import GoogleSignIn
 
+import Alamofire
+
+struct User: Codable {
+    let id: Int
+    let role: Int
+    let communityId: Int
+    let communityName: String
+}
+
 // Centralを見るためのContentView
 struct SigninView: View {
     
@@ -54,16 +63,49 @@ struct SigninView: View {
                 return
             }else {
                 print("サインイン成功だどん！")
-                let user = Auth.auth().currentUser
-                if let user = user {
-                    let uid = user.uid
-                    let email = user.email
-                    let photoURL = user.photoURL
-                    print("uid: \(uid)")
-                    print(email)
-                    print(photoURL)
-                    userId = uid
-                    userEmail = email!
+                let firebaseUser = Auth.auth().currentUser
+                guard let firebaseUser = firebaseUser else {
+                    print("firebaseUserがnilです")
+                    return
+                }
+                print(firebaseUser)
+                let email = firebaseUser.email
+                let photoURL = firebaseUser.photoURL
+                let uid = firebaseUser.uid
+                print("uid: \(uid)")
+                print(email!)
+                print(photoURL!)
+                userId = uid
+                userEmail = email!
+                
+                // バックエンドからユーザ情報を取得する
+                firebaseUser.getIDTokenForcingRefresh(true) { idToken, _ in
+                    guard let _ = idToken else {
+                        // Handle error
+                        print("トークンの取得に失敗だドン。。。")
+                        return;
+                    }
+                    guard let idToken = idToken else {
+                        print("idTokenがnilです")
+                        return
+                    }
+                    print("トークンの取得成功だドン！")
+                    print(idToken)
+                    // TokenをもちいてAPIを叩く
+                    AF.request("https://go-staywatch.kajilab.tk/api/v1/check", method: .get, headers: HTTPHeaders(["Authorization":"Bearer \(idToken)"]))
+                        .validate()
+                        .responseDecodable(of: User.self) {response in
+                            switch response.result {
+                            case .success(let user):
+                                // API通信成功時の処理
+                                print("API通信成功だドン！！")
+                                print(user)
+                            case .failure(let error):
+                                // API通信失敗時の処理
+                                print("API通信失敗だドン。。。。。")
+                                print(error)
+                            }
+                        }
                 }
             }
         }

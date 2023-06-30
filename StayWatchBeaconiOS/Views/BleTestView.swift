@@ -19,7 +19,7 @@ struct BleTestView: View {
     
     var body: some View {
         // users
-        UserView()
+        //UserView()
         // Argument
         //        VStack {
         //            Text(argument)
