@@ -2,11 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>BGTaskSchedulerPermittedIdentifiers</key>
-	<array>
-		<string>com.togawakouta.StayWatchBeaconiOS.appRefresh</string>
-		<string>com.togawakouta.StayWatchBeaconiOS.fetchRemoteData</string>
-	</array>
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict/>
@@ -27,6 +22,7 @@
 		<string>bluetooth-central</string>
 		<string>bluetooth-peripheral</string>
 		<string>fetch</string>
+		<string>location</string>
 		<string>processing</string>
 		<string>バックグラウンドでbluetooth-centralを行います</string>
 		<string>バックグラウンドでbluetooth-peripheralを行います</string>

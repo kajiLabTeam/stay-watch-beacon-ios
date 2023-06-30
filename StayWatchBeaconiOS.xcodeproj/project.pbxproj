@@ -54,6 +54,7 @@
 		ABAB5C842A4C1612003F0CBB /* CentralOcWheelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAB5C832A4C1612003F0CBB /* CentralOcWheelManager.swift */; };
 		ABAB5C862A4C1640003F0CBB /* OpenCampusWheelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAB5C852A4C1640003F0CBB /* OpenCampusWheelView.swift */; };
 		ABAB5C882A4C1730003F0CBB /* ChartDualView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAB5C872A4C1730003F0CBB /* ChartDualView.swift */; };
+		ABAB5C8B2A4D2ECE003F0CBB /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = ABAB5C8A2A4D2ECE003F0CBB /* Alamofire */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -99,6 +100,7 @@
 				ABAB5C532A492BD4003F0CBB /* FirebaseCrashlytics in Frameworks */,
 				ABAB5C732A492BD4003F0CBB /* FirebaseRemoteConfigSwift in Frameworks */,
 				ABAB5C7A2A492D6D003F0CBB /* GoogleSignIn in Frameworks */,
+				ABAB5C8B2A4D2ECE003F0CBB /* Alamofire in Frameworks */,
 				ABAB5C652A492BD4003F0CBB /* FirebaseInAppMessaging-Beta in Frameworks */,
 				ABAB5C572A492BD4003F0CBB /* FirebaseDatabaseSwift in Frameworks */,
 				ABAB5C612A492BD4003F0CBB /* FirebaseFunctions in Frameworks */,
@@ -239,6 +241,7 @@
 				ABAB5C762A492BD4003F0CBB /* FirebaseStorageCombine-Community */,
 				ABAB5C792A492D6D003F0CBB /* GoogleSignIn */,
 				ABAB5C7B2A492D6D003F0CBB /* GoogleSignInSwift */,
+				ABAB5C8A2A4D2ECE003F0CBB /* Alamofire */,
 			);
 			productName = StayWatchBeaconiOS;
 			productReference = AB7CF3B72A15BEE80008558A /* StayWatchBeaconiOS.app */;
@@ -271,6 +274,7 @@
 			packageReferences = (
 				ABAB5C412A492BD4003F0CBB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				ABAB5C782A492D6D003F0CBB /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				ABAB5C892A4D2ECE003F0CBB /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = AB7CF3B82A15BEE80008558A /* Products */;
 			projectDirPath = "";
@@ -457,7 +461,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.togawakouta.StayWatchBeaconiOS;
+				PRODUCT_BUNDLE_IDENTIFIER = "tk.stay-watch-go.kajilab.StayWatchBeaconiOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -488,7 +492,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.togawakouta.StayWatchBeaconiOS;
+				PRODUCT_BUNDLE_IDENTIFIER = "tk.stay-watch-go.kajilab.StayWatchBeaconiOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -534,6 +538,14 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 7.0.0;
+			};
+		};
+		ABAB5C892A4D2ECE003F0CBB /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -683,6 +695,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = ABAB5C782A492D6D003F0CBB /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
 			productName = GoogleSignInSwift;
+		};
+		ABAB5C8A2A4D2ECE003F0CBB /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ABAB5C892A4D2ECE003F0CBB /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
