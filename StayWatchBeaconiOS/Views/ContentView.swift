@@ -30,6 +30,9 @@ struct ContentView: View {
                 NavigationLink(destination: SigninView()){
                     Text("Signin画面へ")
                 }
+                NavigationLink(destination: BeaconView()){
+                    Text("本番アプリへ")
+                }
             }
         }
     }
