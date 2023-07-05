@@ -16,7 +16,7 @@ class CentralOcWheelManager: NSObject, ObservableObject, CBCentralManagerDelegat
     @Published var currentPersonRssi = 0
     @Published var pastWheelRssi = 0
     @Published var pastPersonRssi = 0
-    @Published var intervalSec = 0.5
+    @Published var intervalSec = 0.2
     @Published var currentTime = 0
     var centralManager: CBCentralManager!
     var peripheral: CBPeripheral?
@@ -75,16 +75,16 @@ class CentralOcWheelManager: NSObject, ObservableObject, CBCentralManagerDelegat
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String: Any], rssi RSSI: NSNumber) {
         
         // タイヤにつけたビーコン
-        if(peripheral.identifier.uuidString == "C9FF8825-C590-C4BE-FE22-83F008E7B9FA"){
+        if(peripheral.identifier.uuidString == "C9FF8828-C590-C4BE-FE22-83F008E7B9FA"){
             print("タイヤ：\(RSSI.intValue)")
             
             // 現在のRSSIの値を保存
             currentWheelRssi = RSSI.intValue
         }
         // 介護者のビーコン
-        if(peripheral.identifier.uuidString == "7FB3D0FA-D610-89C4-1482-FE45364C90A5"){
+        else if(peripheral.identifier.uuidString == "7FB3D0FA-D610-89C4-1482-FE45364C90A5"){
             print("介護者：\(RSSI.intValue)")
-            
+
             // 現在のRSSIの値を保存
             currentPersonRssi = RSSI.intValue
         }

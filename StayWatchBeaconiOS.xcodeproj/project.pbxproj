@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB6F48522A550DBC00DD6683 /* BeaconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6F48512A550DBC00DD6683 /* BeaconView.swift */; };
 		AB7CF3BB2A15BEE80008558A /* StayWatchBeaconiOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7CF3BA2A15BEE80008558A /* StayWatchBeaconiOSApp.swift */; };
 		AB7CF3BD2A15BEE80008558A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7CF3BC2A15BEE80008558A /* ContentView.swift */; };
 		AB7CF3BF2A15BEE90008558A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB7CF3BE2A15BEE90008558A /* Assets.xcassets */; };
@@ -59,6 +60,7 @@
 
 /* Begin PBXFileReference section */
 		AB42A22E2A249CEE00C9D46F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		AB6F48512A550DBC00DD6683 /* BeaconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeaconView.swift; sourceTree = "<group>"; };
 		AB7CF3B72A15BEE80008558A /* StayWatchBeaconiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StayWatchBeaconiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB7CF3BA2A15BEE80008558A /* StayWatchBeaconiOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StayWatchBeaconiOSApp.swift; sourceTree = "<group>"; };
 		AB7CF3BC2A15BEE80008558A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 				ABAB5C7F2A4C0B0B003F0CBB /* OpenCampusBasicView.swift */,
 				ABAB5C852A4C1640003F0CBB /* OpenCampusWheelView.swift */,
 				ABAB5C872A4C1730003F0CBB /* ChartDualView.swift */,
+				AB6F48512A550DBC00DD6683 /* BeaconView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -317,6 +320,7 @@
 				ABAB5C1B2A45E25F003F0CBB /* BleTestView.swift in Sources */,
 				ABAB5C822A4C0BF7003F0CBB /* CentralOcBasicManager.swift in Sources */,
 				ABAB5C172A429D4D003F0CBB /* UserView.swift in Sources */,
+				AB6F48522A550DBC00DD6683 /* BeaconView.swift in Sources */,
 				ABAB5C882A4C1730003F0CBB /* ChartDualView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

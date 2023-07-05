@@ -14,7 +14,7 @@ class CentralOcBasicManager: NSObject, ObservableObject, CBCentralManagerDelegat
     @Published var isScanning = false
     @Published var currentRssi = 0
     @Published var pastRssi = 0
-    @Published var intervalSec = 0.5
+    @Published var intervalSec = 0.2
     @Published var currentTime = 0
     var centralManager: CBCentralManager!
     var peripheral: CBPeripheral?

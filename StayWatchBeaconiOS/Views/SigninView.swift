@@ -17,6 +17,8 @@ import Alamofire
 struct User: Codable {
     let id: Int
     let role: Int
+    let uuid: String
+    let name: String
     let communityId: Int
     let communityName: String
 }
@@ -27,6 +29,8 @@ struct SigninView: View {
     @StateObject var signinManager = TestSigninManager()
     @State var userEmail = ""
     @State var userId = ""
+    @State var userName = ""
+    @State var userUuid = ""
     
     private func googleAuth() {
         
@@ -93,6 +97,7 @@ struct SigninView: View {
                     print(idToken)
                     // TokenをもちいてAPIを叩く
                     AF.request("https://go-staywatch.kajilab.tk/api/v1/check", method: .get, headers: HTTPHeaders(["Authorization":"Bearer \(idToken)"]))
+                    //AF.request("http://192.168.101.8:8082/api/v1/stayers", method: .get, headers: HTTPHeaders(["Authorization":"Bearer \(idToken)"]))
                         .validate()
                         .responseDecodable(of: User.self) {response in
                             switch response.result {
@@ -100,6 +105,8 @@ struct SigninView: View {
                                 // API通信成功時の処理
                                 print("API通信成功だドン！！")
                                 print(user)
+                                userUuid = user.uuid
+                                userName = user.name
                             case .failure(let error):
                                 // API通信失敗時の処理
                                 print("API通信失敗だドン。。。。。")
@@ -121,6 +128,9 @@ struct SigninView: View {
             }
             Text("email: \(userEmail)")
             Text("uid: \(userId)")
+                .padding(5)
+            Text("ユーザ名: \(userName)")
+            Text("UUID: \(userUuid)")
         }
     }
 }
