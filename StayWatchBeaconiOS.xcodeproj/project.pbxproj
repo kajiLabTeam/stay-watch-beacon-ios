@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		AB6F48522A550DBC00DD6683 /* BeaconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6F48512A550DBC00DD6683 /* BeaconView.swift */; };
+		AB6F48542A5555B000DD6683 /* FirebaseAuthController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6F48532A5555B000DD6683 /* FirebaseAuthController.swift */; };
 		AB7CF3BB2A15BEE80008558A /* StayWatchBeaconiOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7CF3BA2A15BEE80008558A /* StayWatchBeaconiOSApp.swift */; };
 		AB7CF3BD2A15BEE80008558A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7CF3BC2A15BEE80008558A /* ContentView.swift */; };
 		AB7CF3BF2A15BEE90008558A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB7CF3BE2A15BEE90008558A /* Assets.xcassets */; };
@@ -61,6 +62,7 @@
 /* Begin PBXFileReference section */
 		AB42A22E2A249CEE00C9D46F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		AB6F48512A550DBC00DD6683 /* BeaconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeaconView.swift; sourceTree = "<group>"; };
+		AB6F48532A5555B000DD6683 /* FirebaseAuthController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthController.swift; sourceTree = "<group>"; };
 		AB7CF3B72A15BEE80008558A /* StayWatchBeaconiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StayWatchBeaconiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB7CF3BA2A15BEE80008558A /* StayWatchBeaconiOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StayWatchBeaconiOSApp.swift; sourceTree = "<group>"; };
 		AB7CF3BC2A15BEE80008558A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 				ABAB5C1C2A45E4CA003F0CBB /* TestSigninManager.swift */,
 				ABAB5C812A4C0BF7003F0CBB /* CentralOcBasicManager.swift */,
 				ABAB5C832A4C1612003F0CBB /* CentralOcWheelManager.swift */,
+				AB6F48532A5555B000DD6683 /* FirebaseAuthController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -310,6 +313,7 @@
 				AB7CF3BD2A15BEE80008558A /* ContentView.swift in Sources */,
 				ABAB5C802A4C0B0B003F0CBB /* OpenCampusBasicView.swift in Sources */,
 				ABAB5C152A429AAF003F0CBB /* UserState.swift in Sources */,
+				AB6F48542A5555B000DD6683 /* FirebaseAuthController.swift in Sources */,
 				ABAB5C072A3040CB003F0CBB /* PeripheralManager.swift in Sources */,
 				AB7CF3BB2A15BEE80008558A /* StayWatchBeaconiOSApp.swift in Sources */,
 				ABAB5C052A303B4F003F0CBB /* CentralManager.swift in Sources */,

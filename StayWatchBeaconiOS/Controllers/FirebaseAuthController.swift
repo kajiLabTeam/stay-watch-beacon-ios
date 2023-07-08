@@ -1,8 +1,8 @@
 //
-//  SigninView.swift
+//  FirebaseAuthController.swift
 //  StayWatchBeaconiOS
 //
-//  Created by 戸川浩汰 on 2023/06/23.
+//  Created by 戸川浩汰 on 2023/07/05.
 //
 
 import Foundation
@@ -14,7 +14,7 @@ import GoogleSignIn
 
 import Alamofire
 
-struct FirebaseUser: Codable {
+struct User: Codable {
     let id: Int
     let role: Int
     let uuid: String
@@ -23,16 +23,32 @@ struct FirebaseUser: Codable {
     let communityName: String
 }
 
-// Centralを見るためのContentView
-struct SigninView: View {
+class FirebaseAuthController: NSObject, ObservableObject{
     
-    @StateObject var signinManager = TestSigninManager()
-    @State var userEmail = ""
-    @State var userId = ""
-    @State var userName = ""
-    @State var userUuid = ""
+    @Published var email = ""
+    @Published var communityName = "noen"
+    @Published var userName = "none"
+    @Published var uuid = ""
     
-    private func googleAuth() {
+    override init() {
+        super.init()
+    }
+    
+    private func convertToUUIDFormat(rawUuid: String) -> String {
+        
+        let outputUUID = String(
+            format: "%@-%@-%@-%@-%@",
+            String(rawUuid.prefix(8)),
+            String(rawUuid.prefix(12).suffix(4)),
+            String(rawUuid.prefix(16).suffix(4)),
+            String(rawUuid.prefix(20).suffix(4)),
+            String(rawUuid.suffix(12))
+        )
+        return outputUUID
+    }
+    
+    func googleAuth(peripheral: PeripheralManager) {
+        //var firebaseController:PeripheralManager
         
         guard let clientID:String = FirebaseApp.app()?.options.clientID else { return }
         let config:GIDConfiguration = GIDConfiguration(clientID: clientID)
@@ -55,11 +71,11 @@ struct SigninView: View {
             }
             
             let credential = GoogleAuthProvider.credential(withIDToken: idToken,accessToken: user.accessToken.tokenString)
-            self.login(credential: credential)
+            self.login(credential: credential, peripheral: peripheral)
         }
     }
     
-    private func login(credential: AuthCredential) {
+    func login(credential: AuthCredential, peripheral: PeripheralManager) {
         Auth.auth().signIn(with: credential) { (authResult, error) in
             if let error = error {
                 print("サインイン失敗だドン。。。")
@@ -72,15 +88,15 @@ struct SigninView: View {
                     print("firebaseUserがnilです")
                     return
                 }
+//                guard let firebaseUserEmail = firebaseUser.email else {
+//                    print("firebaseUserのemailがnilです")
+//                    return
+//                }
                 print(firebaseUser)
-                let email = firebaseUser.email
-                let photoURL = firebaseUser.photoURL
-                let uid = firebaseUser.uid
-                print("uid: \(uid)")
-                print(email!)
-                print(photoURL!)
-                userId = uid
-                userEmail = email!
+                self.email = firebaseUser.email!
+                //                let photoURL = firebaseUser.photoURL
+                //                let uid = firebaseUser.uid
+                
                 
                 // バックエンドからユーザ情報を取得する
                 firebaseUser.getIDTokenForcingRefresh(true) { idToken, _ in
@@ -97,7 +113,6 @@ struct SigninView: View {
                     print(idToken)
                     // TokenをもちいてAPIを叩く
                     AF.request("https://go-staywatch.kajilab.tk/api/v1/check", method: .get, headers: HTTPHeaders(["Authorization":"Bearer \(idToken)"]))
-                    //AF.request("http://192.168.101.8:8082/api/v1/stayers", method: .get, headers: HTTPHeaders(["Authorization":"Bearer \(idToken)"]))
                         .validate()
                         .responseDecodable(of: User.self) {response in
                             switch response.result {
@@ -105,8 +120,13 @@ struct SigninView: View {
                                 // API通信成功時の処理
                                 print("API通信成功だドン！！")
                                 print(user)
-                                userUuid = user.uuid
-                                userName = user.name
+                                self.uuid = self.convertToUUIDFormat(rawUuid: user.uuid)
+                                print("フォーマット後のUUIDは \(self.uuid)")
+                                self.userName = user.name
+                                self.communityName = user.communityName
+                                peripheral.serviceUUIDStr = self.uuid
+                                peripheral.stopAdvertising()
+                                peripheral.startAdvertisingWithOption()
                             case .failure(let error):
                                 // API通信失敗時の処理
                                 print("API通信失敗だドン。。。。。")
@@ -117,28 +137,4 @@ struct SigninView: View {
             }
         }
     }
-    
-    var body: some View {
-        VStack{
-            Text("googleでログインするページ")
-            Button(action: {
-                googleAuth()
-            }) {
-                Text("Googleアカウントでサインイン")
-            }
-            Text("email: \(userEmail)")
-            Text("uid: \(userId)")
-                .padding(5)
-            Text("ユーザ名: \(userName)")
-            Text("UUID: \(userUuid)")
-        }
-    }
 }
-
-
-struct SigninView_Previews: PreviewProvider {
-    static var previews: some View {
-        SigninView()
-    }
-}
-
