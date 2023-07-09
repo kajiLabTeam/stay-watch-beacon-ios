@@ -68,9 +68,6 @@ struct BleTestView: View {
                 Text(String(rssi))
             }
         }
-        
-        // graph
-        ChartView(y:centralManager.rssis, intervalSec:centralManager.intervalSec)
     }
 }
 

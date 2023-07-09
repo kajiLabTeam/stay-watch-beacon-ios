@@ -13,28 +13,22 @@ struct ContentView: View {
     
     
     var body: some View {
+        
+        BeaconView()
 
-        NavigationView{
-            VStack {
-                NavigationLink(destination: OpenCampusBasicView()){
-                    Text("オーキャン（BLEの紹介）")
-                        .padding(5)
-                }
-                NavigationLink(destination: OpenCampusWheelView()){
-                    Text("オーキャン（車椅子への応用）")
-                        .padding(5)
-                }
-                NavigationLink(destination: BleTestView(argument: "Hello previews")){
-                    Text("BLEテスト画面へ")
-                }
-                NavigationLink(destination: SigninView()){
-                    Text("Signin画面へ")
-                }
-                NavigationLink(destination: BeaconView()){
-                    Text("本番アプリへ")
-                }
-            }
-        }
+//        NavigationView{
+//            VStack {
+//                NavigationLink(destination: BleTestView(argument: "Hello previews")){
+//                    Text("BLEテスト画面へ")
+//                }
+//                NavigationLink(destination: SigninView()){
+//                    Text("Signin画面へ")
+//                }
+//                NavigationLink(destination: BeaconView()){
+//                    Text("本番アプリへ")
+//                }
+//            }
+//        }
     }
 }
 
