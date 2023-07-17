@@ -11,10 +11,11 @@ import CoreBluetooth
 // Centralを見るためのContentView
 struct ContentView: View {
     
-    
     var body: some View {
         
+        //TestKeyChainView()
         BeaconView()
+        //BleTestView(argument: "Hello previews")
 
 //        NavigationView{
 //            VStack {

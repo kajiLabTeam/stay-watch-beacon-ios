@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		AB6F48522A550DBC00DD6683 /* BeaconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6F48512A550DBC00DD6683 /* BeaconView.swift */; };
 		AB6F48542A5555B000DD6683 /* FirebaseAuthController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6F48532A5555B000DD6683 /* FirebaseAuthController.swift */; };
+		AB6F48802A5CE29000DD6683 /* UserUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6F487F2A5CE29000DD6683 /* UserUtil.swift */; };
+		AB6F48822A5E546F00DD6683 /* TokenStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6F48812A5E546F00DD6683 /* TokenStorage.swift */; };
+		AB6F48842A5E8C5200DD6683 /* TestKeyChainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6F48832A5E8C5200DD6683 /* TestKeyChainView.swift */; };
 		AB7CF3BB2A15BEE80008558A /* StayWatchBeaconiOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7CF3BA2A15BEE80008558A /* StayWatchBeaconiOSApp.swift */; };
 		AB7CF3BD2A15BEE80008558A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7CF3BC2A15BEE80008558A /* ContentView.swift */; };
 		AB7CF3BF2A15BEE90008558A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB7CF3BE2A15BEE90008558A /* Assets.xcassets */; };
@@ -55,6 +58,9 @@
 		AB42A22E2A249CEE00C9D46F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		AB6F48512A550DBC00DD6683 /* BeaconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeaconView.swift; sourceTree = "<group>"; };
 		AB6F48532A5555B000DD6683 /* FirebaseAuthController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthController.swift; sourceTree = "<group>"; };
+		AB6F487F2A5CE29000DD6683 /* UserUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUtil.swift; sourceTree = "<group>"; };
+		AB6F48812A5E546F00DD6683 /* TokenStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenStorage.swift; sourceTree = "<group>"; };
+		AB6F48832A5E8C5200DD6683 /* TestKeyChainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestKeyChainView.swift; sourceTree = "<group>"; };
 		AB7CF3B72A15BEE80008558A /* StayWatchBeaconiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StayWatchBeaconiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB7CF3BA2A15BEE80008558A /* StayWatchBeaconiOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StayWatchBeaconiOSApp.swift; sourceTree = "<group>"; };
 		AB7CF3BC2A15BEE80008558A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -109,6 +115,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AB6F487E2A5CE25700DD6683 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				AB6F487F2A5CE29000DD6683 /* UserUtil.swift */,
+				AB6F48812A5E546F00DD6683 /* TokenStorage.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		AB7CF3AE2A15BEE80008558A = {
 			isa = PBXGroup;
 			children = (
@@ -128,6 +143,7 @@
 		AB7CF3B92A15BEE80008558A /* StayWatchBeaconiOS */ = {
 			isa = PBXGroup;
 			children = (
+				AB6F487E2A5CE25700DD6683 /* Utils */,
 				ABAB5C7D2A49523B003F0CBB /* GoogleService-Info.plist */,
 				ABAB5C132A429A99003F0CBB /* Models */,
 				ABAB5C032A3039D0003F0CBB /* Views */,
@@ -165,6 +181,7 @@
 				ABAB5C162A429D4D003F0CBB /* UserView.swift */,
 				ABAB5C1A2A45E25F003F0CBB /* BleTestView.swift */,
 				AB6F48512A550DBC00DD6683 /* BeaconView.swift */,
+				AB6F48832A5E8C5200DD6683 /* TestKeyChainView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -290,9 +307,12 @@
 				AB6F48542A5555B000DD6683 /* FirebaseAuthController.swift in Sources */,
 				ABAB5C072A3040CB003F0CBB /* PeripheralManager.swift in Sources */,
 				AB7CF3BB2A15BEE80008558A /* StayWatchBeaconiOSApp.swift in Sources */,
+				AB6F48822A5E546F00DD6683 /* TokenStorage.swift in Sources */,
 				ABAB5C052A303B4F003F0CBB /* CentralManager.swift in Sources */,
 				ABAB5C1B2A45E25F003F0CBB /* BleTestView.swift in Sources */,
+				AB6F48842A5E8C5200DD6683 /* TestKeyChainView.swift in Sources */,
 				ABAB5C172A429D4D003F0CBB /* UserView.swift in Sources */,
+				AB6F48802A5CE29000DD6683 /* UserUtil.swift in Sources */,
 				AB6F48522A550DBC00DD6683 /* BeaconView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

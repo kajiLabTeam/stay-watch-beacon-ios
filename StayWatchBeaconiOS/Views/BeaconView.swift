@@ -15,12 +15,19 @@ struct BeaconView: View {
     
     @StateObject var peripheralManager = PeripheralManager()
     @StateObject var firebaseController = FirebaseAuthController()
+    @StateObject var tokenStorage = TokenStorage()
     
     @State var synchoronizationTime = "2023/04/01 11:53"
     
+    //var user = UserState(name: "", uuid: "", email: "", communityName: "", latestSyncTime: "")
+    @StateObject var user = UserUtil()
+    
+    @State var isUserSignIn = false
+    
     var body: some View {
         VStack {
-            if(firebaseController.email == ""){
+            //if(firebaseController.email == ""){
+            if(user.email == ""){
                 Spacer()
                 Group{
                     Text("滞在ウォッチ用ビーコン")
@@ -44,23 +51,26 @@ struct BeaconView: View {
                 // 上の研究室名、メールアドレス、サインインの部分
                 VStack {
                     HStack {
-                        Text(firebaseController.communityName)
+                        //Text(firebaseController.communityName)
+                        Text(user.communityName)
                             .font(.title3)
                             .fontWeight(.medium)
                         Spacer()
                         VStack {
                             Button(action: {
                                 //print(type(of: peripheralManager))
+                                
                                 firebaseController.googleAuth(peripheral: peripheralManager)
                             }) {
-                                Text("別アカウントでサインイン")
+                                Text("別のアカウントでサインイン")
                                     .font(.caption)
                                     .padding(.vertical, 5)
                                     .padding(.horizontal)
                                     .border(Color.yellow, width:3.0)
                                     .foregroundColor(Color.black)
                             }
-                            Text(firebaseController.email)
+                            //Text(firebaseController.email)
+                            Text(user.email)
                                 .font(.caption)
                         }
                     }
@@ -72,7 +82,8 @@ struct BeaconView: View {
                 // 下のビーコン関連の部分
                 VStack {
                     VStack {
-                        if(firebaseController.uuid == ""){
+                        //if(firebaseController.uuid == ""){
+                        if(user.name == ""){
                             Text("未登録")
                                 .padding()
                                 .frame(width:290, height: 200)
@@ -86,6 +97,21 @@ struct BeaconView: View {
                                 .padding(.top, 20)
                             Text("登録されていません")
                                 .padding(.bottom, 5)
+                            //}else if(firebaseController.uuid.dropFirst(27).first != "a"){
+                        }else if(user.uuid.dropFirst(27).first != "a"){
+                            Text("未登録")
+                                .padding()
+                                .frame(width:290, height: 200)
+                                .foregroundColor(Color.red)
+                                .font(.system(size:54.0))
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 24)
+                                        .stroke(Color.red, lineWidth: 5)
+                                )
+                            Text("アプリビーコンとして")
+                                .padding(.top, 20)
+                            Text("登録されていません")
+                                .padding(.bottom, 5)
                         }else{
                             Text(peripheralManager.isAdvertising ? "発信中" : "停止中")
                                 .padding()
@@ -95,23 +121,26 @@ struct BeaconView: View {
                             //.background(Color.red)
                                 .background(peripheralManager.isAdvertising ? Color.blue : Color.red)
                                 .cornerRadius(24)
-                            Text(firebaseController.userName)
+                            //Text(firebaseController.userName)
+                            Text(user.name)
                                 .padding(.bottom, 5)
                                 .padding(.top, 20)
                                 .font(.title2)
-                            Text(firebaseController.uuid)
+                            //Text(firebaseController.uuid)
+                            Text(user.uuid)
                                 .font(.caption)
                                 .padding(.bottom, 5)
                         }
                         Button(action: {
-                            firebaseController.googleAuth(peripheral: peripheralManager)
+                            firebaseController.getUserByToken(peripheral: peripheralManager, tokenStorage: tokenStorage)
                         }) {
                             Image(systemName: "arrow.triangle.2.circlepath.circle")
                                 .font(.system(size: 50))
                                 .padding(.top)
                                 .foregroundColor(Color.black)
                         }
-                        Text("最新の同期：\(synchoronizationTime)")
+                        //Text("最新の同期：\(synchoronizationTime)")
+                        Text("最新の同期：\(user.latestSyncTime)")
                             .font(.caption)
                             .foregroundColor(Color.gray)
                             .padding(.bottom)
@@ -123,7 +152,8 @@ struct BeaconView: View {
                 .padding(.top)
                 
                 // 登録情報があったら発信の開始・停止ボタンを表示する
-                if(firebaseController.uuid != ""){
+                //if(firebaseController.uuid != "" && firebaseController.uuid.dropFirst(27).first == "a"){
+                if(user.uuid != "" && user.uuid.dropFirst(27).first == "a"){
                     Button(action: {
                         if peripheralManager.isAdvertising {
                             peripheralManager.stopAdvertising()

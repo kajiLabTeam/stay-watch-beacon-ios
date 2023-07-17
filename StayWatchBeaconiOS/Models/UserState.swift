@@ -22,6 +22,28 @@ struct Result: Codable {
     var communituName: String
 }
 
+struct UserState {
+    let name: String
+    let uuid: String
+    let email: String
+    let communityName: String
+    let latestSyncTime: String
+    
+//    var name: String
+//    var uuid: String
+//    var email: String
+//    var communityName: String
+//    var latestSyncTime: String
+//
+//    init() {
+//        name = ""
+//        uuid = ""
+//        email = ""
+//        communityName = ""
+//        latestSyncTime = ""
+//    }
+}
+
 //import SwiftUI
 //import Combine
 //

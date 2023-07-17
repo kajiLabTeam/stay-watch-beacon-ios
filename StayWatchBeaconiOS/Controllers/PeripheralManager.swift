@@ -8,6 +8,7 @@
 import Foundation
 import CoreBluetooth
 import UIKit
+import SwiftUI
 
 //Bluetoothペリフェラルとしてカウントを管理するクラス
 class PeripheralManager: NSObject, ObservableObject, CBPeripheralManagerDelegate {
@@ -16,7 +17,7 @@ class PeripheralManager: NSObject, ObservableObject, CBPeripheralManagerDelegate
     //     カウントを管理するPublishedプロパティ
     @Published var count = 0
     @Published var isAdvertising = false
-    @Published var serviceUUIDStr = "e7d61ea3-f8dd-49c8-8f2f-f24a0020002e"
+    @Published var serviceUUIDStr = "00000000-0000-0000-0000-000000000000"
     @Published var advertisingServiceUUIDStr = "e7d61ea3-f8dd-49c8-8f2f-f24a0020002e"
     // Bluetoothペリフェラルマネージャ
     var peripheralManager: CBPeripheralManager!
@@ -26,13 +27,18 @@ class PeripheralManager: NSObject, ObservableObject, CBPeripheralManagerDelegate
     //let serviceUUID = CBUUID(string: "11f11111-1f60-1aa6-17b1-111111111111")
     let characteristicUUID = CBUUID(string: "b37e1ccd-b930-a45e-abef-07f9232b5a81")
     
+    @StateObject var user = UserUtil()
+    
     
     override init() {
         super.init()
-        // let options: Dictionary = [CBPeripheralManagerOptionRestoreIdentifierKey: "staywatchPeripheralRestoreIdentifierKey"]
         let options: Dictionary = [CBPeripheralManagerOptionRestoreIdentifierKey: "com.togawakouta.StayWatchBeaconiOS"]
         peripheralManager = CBPeripheralManager(delegate: self, queue: nil, options: options)
         // peripheralManager = CBPeripheralManager(delegate: self, queue: nil, options: nil)
+        // UUIDを保存されている場合そのUUIDに設定する
+        if let uuid = UserDefaults.standard.string(forKey: "uuid") {
+            serviceUUIDStr = uuid
+        }
     }
     
     // ペリフェラルマネージャの状態が更新されたときに呼ばれるデリゲートメソッド
@@ -51,13 +57,14 @@ class PeripheralManager: NSObject, ObservableObject, CBPeripheralManagerDelegate
     // アドバタイズを開始するメソッド
     func startAdvertisingWithOption() {
         // サービスとキャラクタリスティックを作成し、ペリフェラルマネージャに追加
+        //serviceUUIDStr = UserDefaults.standard.string(forKey: "uuid")!
         let service = CBMutableService(type: CBUUID(string:serviceUUIDStr), primary: true)
         let characteristic = CBMutableCharacteristic(type: characteristicUUID, properties: .write, value: nil, permissions: .writeable)
         service.characteristics = [characteristic]
         peripheralManager.add(service)
         let serviceUUIDs = [CBUUID(string:serviceUUIDStr)]
         let advertisementData: [String: Any] = [
-            CBAdvertisementDataLocalNameKey: "kjlb-iPhone11pro",
+            CBAdvertisementDataLocalNameKey: "StayWatchBeaconForiOS",
             CBAdvertisementDataServiceUUIDsKey: serviceUUIDs
         ]
         // アドバタイズ開始
