@@ -24,6 +24,19 @@ struct BeaconView: View {
     
     @State var isUserSignIn = false
     
+    func synchUser () {
+        guard let data = tokenStorage.get() else {
+            print("KeyChaneユーザの読み込みに失敗したドン。。。")
+            firebaseController.googleAuth(peripheral: peripheralManager, tokenStorage: tokenStorage)
+            return
+        }
+        
+        let token = String(decoding: data, as: UTF8.self)
+        print("トークンはなーんだ \(token)")
+        
+        firebaseController.getUserByToken(token: token, peripheral: peripheralManager)
+    }
+    
     var body: some View {
         VStack {
             //if(firebaseController.email == ""){
@@ -36,7 +49,7 @@ struct BeaconView: View {
                 .font(.title)
                 Spacer()
                 Button(action: {
-                    firebaseController.googleAuth(peripheral: peripheralManager)
+                    firebaseController.googleAuth(peripheral: peripheralManager, tokenStorage: tokenStorage)
                 }) {
                     Text("Googleアカウントでサインイン")
                         .padding()
@@ -60,7 +73,7 @@ struct BeaconView: View {
                             Button(action: {
                                 //print(type(of: peripheralManager))
                                 
-                                firebaseController.googleAuth(peripheral: peripheralManager)
+                                firebaseController.googleAuth(peripheral: peripheralManager, tokenStorage: tokenStorage)
                             }) {
                                 Text("別のアカウントでサインイン")
                                     .font(.caption)
@@ -132,7 +145,7 @@ struct BeaconView: View {
                                 .padding(.bottom, 5)
                         }
                         Button(action: {
-                            firebaseController.getUserByToken(peripheral: peripheralManager, tokenStorage: tokenStorage)
+                            synchUser()
                         }) {
                             Image(systemName: "arrow.triangle.2.circlepath.circle")
                                 .font(.system(size: 50))

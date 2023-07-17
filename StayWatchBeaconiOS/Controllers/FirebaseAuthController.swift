@@ -47,22 +47,41 @@ class FirebaseAuthController: NSObject, ObservableObject{
         return outputUUID
     }
     
-    func getUserByToken(peripheral: PeripheralManager, tokenStorage: TokenStorage){
-        guard let data = tokenStorage.get(
-            service: "korehagettoken.com",
-            account: "abtoken"
-        ) else {
-            print("KeyChaneユーザの読み込みに失敗したドン。。。")
-            googleAuth(peripheral: peripheral)
-            return
-        }
-        
-        let token = String(decoding: data, as: UTF8.self)
-        print("トークンはなーんだ \(token)")
-        
+    func getUserByToken(token: String, peripheral: PeripheralManager){
+        // TokenをもちいてAPIを叩く
+        AF.request("https://go-staywatch.kajilab.tk/api/v1/check", method: .get, headers: HTTPHeaders(["Authorization":"Bearer \(token)"]))
+        // AF.request("http://192.168.101.8:8082/api/v1/check", method: .get, headers: HTTPHeaders(["Authorization":"Bearer \(idToken)"]))   // ローカル
+            .validate()
+            .responseDecodable(of: User.self) {response in
+                switch response.result {
+                case .success(let user):
+                    // API通信成功時の処理
+                    print("API通信成功だドン！！")
+                    print(user)
+                    self.uuid = self.convertToUUIDFormat(rawUuid: user.uuid)
+                    print("フォーマット後のUUIDは \(self.uuid)")
+                    self.userName = user.name
+                    self.communityName = user.communityName
+                    UserDefaults.standard.set(self.uuid, forKey: "uuid")
+                    UserDefaults.standard.set(self.communityName, forKey: "communityName")
+                    UserDefaults.standard.set(self.userName, forKey: "userName")
+                    peripheral.serviceUUIDStr = self.uuid
+                    peripheral.stopAdvertising()
+                    peripheral.startAdvertisingWithOption()
+                    
+                    print("UserDefaultsの中身")
+                    print(UserDefaults.standard.string(forKey: "uuid"))
+                    print(UserDefaults.standard.string(forKey: "communityName"))
+                    print(UserDefaults.standard.string(forKey: "userName"))
+                case .failure(let error):
+                    // API通信失敗時の処理
+                    print("API通信失敗だドン。。。。。")
+                    print(error)
+                }
+            }
     }
     
-    func googleAuth(peripheral: PeripheralManager) {
+    func googleAuth(peripheral: PeripheralManager, tokenStorage: TokenStorage) {
         //var firebaseController:PeripheralManager
         
         guard let clientID:String = FirebaseApp.app()?.options.clientID else { return }
@@ -86,11 +105,11 @@ class FirebaseAuthController: NSObject, ObservableObject{
             }
             
             let credential = GoogleAuthProvider.credential(withIDToken: idToken,accessToken: user.accessToken.tokenString)
-            self.login(credential: credential, peripheral: peripheral)
+            self.login(credential: credential, peripheral: peripheral, tokenStorage: tokenStorage)
         }
     }
     
-    func login(credential: AuthCredential, peripheral: PeripheralManager) {
+    func login(credential: AuthCredential, peripheral: PeripheralManager, tokenStorage: TokenStorage) {
         Auth.auth().signIn(with: credential) { (authResult, error) in
             if let error = error {
                 print("サインイン失敗だドン。。。")
@@ -127,37 +146,14 @@ class FirebaseAuthController: NSObject, ObservableObject{
                     }
                     print("トークンの取得成功だドン！")
                     print(idToken)
-                    // TokenをもちいてAPIを叩く
-                    AF.request("https://go-staywatch.kajilab.tk/api/v1/check", method: .get, headers: HTTPHeaders(["Authorization":"Bearer \(idToken)"]))
-                    // AF.request("http://192.168.101.8:8082/api/v1/check", method: .get, headers: HTTPHeaders(["Authorization":"Bearer \(idToken)"]))   // ローカル
-                        .validate()
-                        .responseDecodable(of: User.self) {response in
-                            switch response.result {
-                            case .success(let user):
-                                // API通信成功時の処理
-                                print("API通信成功だドン！！")
-                                print(user)
-                                self.uuid = self.convertToUUIDFormat(rawUuid: user.uuid)
-                                print("フォーマット後のUUIDは \(self.uuid)")
-                                self.userName = user.name
-                                self.communityName = user.communityName
-                                UserDefaults.standard.set(self.uuid, forKey: "uuid")
-                                UserDefaults.standard.set(self.communityName, forKey: "communityName")
-                                UserDefaults.standard.set(self.userName, forKey: "userName")
-                                peripheral.serviceUUIDStr = self.uuid
-                                peripheral.stopAdvertising()
-                                peripheral.startAdvertisingWithOption()
-                                
-                                print("UserDefaultsの中身")
-                                print(UserDefaults.standard.string(forKey: "uuid"))
-                                print(UserDefaults.standard.string(forKey: "communityName"))
-                                print(UserDefaults.standard.string(forKey: "userName"))
-                            case .failure(let error):
-                                // API通信失敗時の処理
-                                print("API通信失敗だドン。。。。。")
-                                print(error)
-                            }
-                        }
+                    
+                    do {
+                        try tokenStorage.save(token: idToken)
+                    }
+                    catch {
+                        print(error)
+                    }
+                    self.getUserByToken(token: idToken, peripheral: peripheral)
                 }
             }
         }

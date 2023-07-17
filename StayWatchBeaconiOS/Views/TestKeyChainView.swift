@@ -15,10 +15,7 @@ struct TestKeyChainView: View {
     @StateObject var tokenStorage = TokenStorage()
     
     func getToken() {
-        guard let data = tokenStorage.get(
-            service: "korehagettoken.com",
-            account: "abtoken"
-        ) else {
+        guard let data = tokenStorage.get() else {
             print("パスワードの読み込みに失敗したドン。。。")
             return
         }
@@ -38,7 +35,7 @@ struct TestKeyChainView: View {
             
             Button(action: {
                 do {
-                    try tokenStorage.save(service: "korehagettoken.com", account: "abtoken", token: "sampleTokenyJhbGciOiJFUzI1NiIsImtpZCI6IjllciJ9.eyJhdWQiOiJodHRwczovL2JhY2tlbmQuZXhhbXBsZS5jb20iLCJpc3MiOiJodHRwczovL2FzLmV4YW1wbGUuY29tIiwiZXhwIjoxNDQxOTE3NTkzLCJpYXQiOjE0NDE5MTc1MzMsImF6cCI6InJzMDgiLCJzdWIiOiJiY0BleGFtcGxlLmNvbSIsInNjcCI6WyJhcGkiXX0.vHJKtJ-zFIN75Tk7qGlmQsWPlvnChb2uSaGwPLvlWl64ts7-vvfwYDaVoXIQe_HkTVdljIzavVlPT60_b_9pD".data(using: .utf8)!)
+                    try tokenStorage.save(token: "sampleTokenyJhbGciOiJFUzI1NiIsImtpZCI6IjllciJ9.eyJhdWQiOiJodHRwczovL2JhY2tlbmQuZXhhbXBsZS5jb20iLCJpc3MiOiJodHRwczovL2FzLmV4YW1wbGUuY29tIiwiZXhwIjoxNDQxOTE3NTkzLCJpYXQiOjE0NDE5MTc1MzMsImF6cCI6InJzMDgiLCJzdWIiOiJiY0BleGFtcGxlLmNvbSIsInNjcCI6WyJhcGkiXX0.vHJKtJ-zFIN75Tk7qGlmQsWPlvnChb2uSaGwPLvlWl64ts7-vvfwYDaVoXIQe_HkTVdljIzavVlPT60_b_9pD")
                 }
                 catch {
                     print(error)
@@ -50,7 +47,7 @@ struct TestKeyChainView: View {
             
             Button(action: {
                 do {
-                    try tokenStorage.delete(service: "korehagettoken.com", account: "abtoken")
+                    try tokenStorage.delete()
                 }
                 catch {
                     print(error)

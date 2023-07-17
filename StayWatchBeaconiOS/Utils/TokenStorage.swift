@@ -8,22 +8,24 @@
 import Foundation
 
 class TokenStorage: ObservableObject {
+    
+    let SERVICE = "StayWatchBeaconForiOS"
+    let ACCOUNT = "stayer"
+    
     enum KeychainError: Error {
         case duplicateEntry
         case unknown(OSStatus)
     }
     
     func save(
-        service: String,
-        account: String,
-        token: Data
+        token: String
     ) throws {
         // service, account, password, class, data
         let query: [String: AnyObject] = [
             kSecClass as String: kSecClassGenericPassword,
-            kSecAttrService as String: service as AnyObject,
-            kSecAttrAccount as String: account as AnyObject,
-            kSecValueData as String: token as AnyObject,
+            kSecAttrService as String: SERVICE as AnyObject,
+            kSecAttrAccount as String: ACCOUNT as AnyObject,
+            kSecValueData as String: token.data(using: .utf8) as AnyObject,
         ]
         
         let status = SecItemAdd(query as CFDictionary, nil)
@@ -45,15 +47,12 @@ class TokenStorage: ObservableObject {
         print("saveしたどん")
     }
     
-    func get(
-        service: String,
-        account: String
-    ) -> Data? {
+    func get() -> Data? {
         // service, account, password, class, data
         let query: [String: AnyObject] = [
             kSecClass as String: kSecClassGenericPassword,
-            kSecAttrService as String: service as AnyObject,
-            kSecAttrAccount as String: account as AnyObject,
+            kSecAttrService as String: SERVICE as AnyObject,
+            kSecAttrAccount as String: ACCOUNT as AnyObject,
             kSecReturnData as String: kCFBooleanTrue,
             kSecMatchLimit as String: kSecMatchLimitOne
         ]
@@ -69,14 +68,11 @@ class TokenStorage: ObservableObject {
         return result as? Data
     }
     
-    func delete(
-        service: String,
-        account: String
-    ) throws {
+    func delete() throws {
         let query: [String: AnyObject] = [
             kSecClass as String: kSecClassGenericPassword,
-            kSecAttrService as String: service as AnyObject,
-            kSecAttrAccount as String: account as AnyObject,
+            kSecAttrService as String: SERVICE as AnyObject,
+            kSecAttrAccount as String: ACCOUNT as AnyObject,
         ]
         
         // データの削除を試みる
