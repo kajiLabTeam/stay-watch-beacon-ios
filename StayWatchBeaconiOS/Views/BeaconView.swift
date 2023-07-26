@@ -17,6 +17,8 @@ struct BeaconView: View {
     @StateObject var firebaseController = FirebaseAuthController()
     @StateObject var tokenStorage = TokenStorage()
     
+    let IPHONE_CHARACTER:Character = "1"
+    
     @State var synchoronizationTime = "2023/04/01 11:53"
     
     //var user = UserState(name: "", uuid: "", email: "", communityName: "", latestSyncTime: "")
@@ -111,7 +113,7 @@ struct BeaconView: View {
                             Text("登録されていません")
                                 .padding(.bottom, 5)
                             //}else if(firebaseController.uuid.dropFirst(27).first != "a"){
-                        }else if(user.uuid.dropFirst(27).first != "a"){
+                        }else if(user.uuid.dropFirst(27).first != IPHONE_CHARACTER){
                             Text("未登録")
                                 .padding()
                                 .frame(width:290, height: 200)
@@ -166,7 +168,7 @@ struct BeaconView: View {
                 
                 // 登録情報があったら発信の開始・停止ボタンを表示する
                 //if(firebaseController.uuid != "" && firebaseController.uuid.dropFirst(27).first == "a"){
-                if(user.uuid != "" && user.uuid.dropFirst(27).first == "a"){
+                if(user.uuid != "" && user.uuid.dropFirst(27).first == IPHONE_CHARACTER){
                     Button(action: {
                         if peripheralManager.isAdvertising {
                             peripheralManager.stopAdvertising()
