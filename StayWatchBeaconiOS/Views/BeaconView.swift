@@ -17,7 +17,7 @@ struct BeaconView: View {
     @StateObject var firebaseController = FirebaseAuthController()
     @StateObject var tokenStorage = TokenStorage()
     
-    let IPHONE_CHARACTER:Character = "1"
+    let IPHONE_CHARACTER:Character = "a"
     
     @State var synchoronizationTime = "2023/04/01 11:53"
     
@@ -36,7 +36,7 @@ struct BeaconView: View {
         let token = String(decoding: data, as: UTF8.self)
         print("トークンはなーんだ \(token)")
         
-        firebaseController.getUserByToken(token: token, peripheral: peripheralManager)
+        firebaseController.getUserByToken(token: token, peripheral: peripheralManager)  // これのエラーチェックしよう
     }
     
     var body: some View {

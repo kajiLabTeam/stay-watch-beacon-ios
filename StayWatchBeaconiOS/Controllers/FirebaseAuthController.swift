@@ -47,10 +47,10 @@ class FirebaseAuthController: NSObject, ObservableObject{
         return outputUUID
     }
     
-    func getUserByToken(token: String, peripheral: PeripheralManager){
+    func getUserByToken(token: String, peripheral: PeripheralManager) {
         // TokenをもちいてAPIを叩く
         AF.request("https://go-staywatch.kajilab.tk/api/v1/check", method: .get, headers: HTTPHeaders(["Authorization":"Bearer \(token)"]))
-        // AF.request("http://192.168.101.8:8082/api/v1/check", method: .get, headers: HTTPHeaders(["Authorization":"Bearer \(idToken)"]))   // ローカル
+        //AF.request("http://192.168.101.8:8082/api/v1/check", method: .get, headers: HTTPHeaders(["Authorization":"Bearer \(token)"]))   // ローカル
             .validate()
             .responseDecodable(of: User.self) {response in
                 switch response.result {

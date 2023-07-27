@@ -21,6 +21,8 @@ class PeripheralManager: NSObject, ObservableObject, CBPeripheralManagerDelegate
     @Published var advertisingServiceUUIDStr = "e7d61ea3-f8dd-49c8-8f2f-f24a0020002e"
     // Bluetoothペリフェラルマネージャ
     var peripheralManager: CBPeripheralManager!
+    
+    let advertiseUUIDManager = AdvertiseUUIDManager()
     // サービスとキャラクタリスティックのUUID
     //let serviceUUID = CBUUID(string: "e7d61ea3-f8dd-49c8-8f2f-f24a0020002e")
     //let serviceUUID = CBUUID(string: "00000000-0000-0000-0000-000000000012")
@@ -58,11 +60,11 @@ class PeripheralManager: NSObject, ObservableObject, CBPeripheralManagerDelegate
     func startAdvertisingWithOption() {
         // サービスとキャラクタリスティックを作成し、ペリフェラルマネージャに追加
         //serviceUUIDStr = UserDefaults.standard.string(forKey: "uuid")!
-        let service = CBMutableService(type: CBUUID(string:serviceUUIDStr), primary: true)
-        let characteristic = CBMutableCharacteristic(type: characteristicUUID, properties: .write, value: nil, permissions: .writeable)
-        service.characteristics = [characteristic]
-        peripheralManager.add(service)
-        let serviceUUIDs = [CBUUID(string:serviceUUIDStr)]
+        
+        let serviceUUIDs = advertiseUUIDManager.generateAdvertisingUUIDs(inputUUID: serviceUUIDStr)
+        //let serviceUUIDs = [CBUUID(string:"e7d61ea3-f8dd-49c8-8f2f-f24a0020002e")]
+        print("serviceUUIDsは：")
+        print(serviceUUIDs)
         let advertisementData: [String: Any] = [
             CBAdvertisementDataLocalNameKey: "StayWatchBeaconForiOS",
             CBAdvertisementDataServiceUUIDsKey: serviceUUIDs
