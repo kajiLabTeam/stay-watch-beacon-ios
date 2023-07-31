@@ -15,6 +15,9 @@
 		AB27A4B02A775DB600E8921E /* FirebaseAuthenticationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB27A4AF2A775DB600E8921E /* FirebaseAuthenticationModel.swift */; };
 		AB27A4B22A77761C00E8921E /* PeripheralModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB27A4B12A77761C00E8921E /* PeripheralModel.swift */; };
 		AB27A4B42A77774F00E8921E /* AdvertiseUUIDModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB27A4B32A77774F00E8921E /* AdvertiseUUIDModel.swift */; };
+		AB5DFBDA2A780D8B009C18F9 /* SigninView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5DFBD92A780D8B009C18F9 /* SigninView.swift */; };
+		AB5DFBDC2A780EAD009C18F9 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5DFBDB2A780EAD009C18F9 /* HeaderView.swift */; };
+		AB5DFBDE2A7811B8009C18F9 /* BeaconStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5DFBDD2A7811B8009C18F9 /* BeaconStatusView.swift */; };
 		AB6F48522A550DBC00DD6683 /* BeaconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6F48512A550DBC00DD6683 /* BeaconView.swift */; };
 		AB6F48542A5555B000DD6683 /* FirebaseAuthController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6F48532A5555B000DD6683 /* FirebaseAuthController.swift */; };
 		AB6F48802A5CE29000DD6683 /* UserUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6F487F2A5CE29000DD6683 /* UserUtil.swift */; };
@@ -72,6 +75,9 @@
 		AB27A4B12A77761C00E8921E /* PeripheralModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeripheralModel.swift; sourceTree = "<group>"; };
 		AB27A4B32A77774F00E8921E /* AdvertiseUUIDModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertiseUUIDModel.swift; sourceTree = "<group>"; };
 		AB42A22E2A249CEE00C9D46F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		AB5DFBD92A780D8B009C18F9 /* SigninView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninView.swift; sourceTree = "<group>"; };
+		AB5DFBDB2A780EAD009C18F9 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		AB5DFBDD2A7811B8009C18F9 /* BeaconStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeaconStatusView.swift; sourceTree = "<group>"; };
 		AB6F48512A550DBC00DD6683 /* BeaconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeaconView.swift; sourceTree = "<group>"; };
 		AB6F48532A5555B000DD6683 /* FirebaseAuthController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthController.swift; sourceTree = "<group>"; };
 		AB6F487F2A5CE29000DD6683 /* UserUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUtil.swift; sourceTree = "<group>"; };
@@ -209,6 +215,9 @@
 				ABAB5C1A2A45E25F003F0CBB /* BleTestView.swift */,
 				AB6F48512A550DBC00DD6683 /* BeaconView.swift */,
 				AB6F48832A5E8C5200DD6683 /* TestKeyChainView.swift */,
+				AB5DFBD92A780D8B009C18F9 /* SigninView.swift */,
+				AB5DFBDB2A780EAD009C18F9 /* HeaderView.swift */,
+				AB5DFBDD2A7811B8009C18F9 /* BeaconStatusView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -339,7 +348,9 @@
 				AB27A4B42A77774F00E8921E /* AdvertiseUUIDModel.swift in Sources */,
 				AB27A4B02A775DB600E8921E /* FirebaseAuthenticationModel.swift in Sources */,
 				AB27A4AA2A73B31A00E8921E /* BeaconViewController.swift in Sources */,
+				AB5DFBDA2A780D8B009C18F9 /* SigninView.swift in Sources */,
 				ABAB5C152A429AAF003F0CBB /* UserState.swift in Sources */,
+				AB5DFBDC2A780EAD009C18F9 /* HeaderView.swift in Sources */,
 				AB27A4A72A720D9300E8921E /* AdvertiseUUIDManager.swift in Sources */,
 				AB27A4AE2A775CD200E8921E /* KeyChainModel.swift in Sources */,
 				AB6F48542A5555B000DD6683 /* FirebaseAuthController.swift in Sources */,
@@ -351,6 +362,7 @@
 				ABAB5C1B2A45E25F003F0CBB /* BleTestView.swift in Sources */,
 				AB27A4B22A77761C00E8921E /* PeripheralModel.swift in Sources */,
 				AB6F48842A5E8C5200DD6683 /* TestKeyChainView.swift in Sources */,
+				AB5DFBDE2A7811B8009C18F9 /* BeaconStatusView.swift in Sources */,
 				ABAB5C172A429D4D003F0CBB /* UserView.swift in Sources */,
 				AB6F48802A5CE29000DD6683 /* UserUtil.swift in Sources */,
 				AB6F48522A550DBC00DD6683 /* BeaconView.swift in Sources */,
