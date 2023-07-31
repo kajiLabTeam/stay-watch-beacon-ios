@@ -53,15 +53,11 @@ class PeripheralModel: NSObject, ObservableObject, CBPeripheralManagerDelegate {
         serviceUUIDStr = UserDefaults.standard.string(forKey: "uuid")!
         
         let serviceUUIDs = advertiseUUIDModel.generateAdvertisingUUIDs(inputUUID: serviceUUIDStr)
-        print("serviceUUIDsは：")
-        print(serviceUUIDs)
         let advertisementData: [String: Any] = [
             CBAdvertisementDataLocalNameKey: "StayWatchBeaconForiOS",
             CBAdvertisementDataServiceUUIDsKey: serviceUUIDs
         ]
         // アドバタイズ開始
-        print("アドバタイズ開始")
-        //peripheralManager.startAdvertising([CBAdvertisementDataServiceUUIDsKey: [serviceUUID]])
         peripheralManager.startAdvertising(advertisementData)
         isAdvertising = true
         advertisingServiceUUIDStr = serviceUUIDStr
@@ -69,7 +65,6 @@ class PeripheralModel: NSObject, ObservableObject, CBPeripheralManagerDelegate {
     
     // アドバタイズを終了するメソッド
     func stopAdvertising() {
-        print("アドバタイズ終了")
         peripheralManager.stopAdvertising()
         isAdvertising = false
     }
@@ -86,7 +81,7 @@ class PeripheralModel: NSObject, ObservableObject, CBPeripheralManagerDelegate {
     
     // 復元時に呼ばれる
     func peripheralManager(_ peripheral: CBPeripheralManager, willRestoreState dict: [String : Any]) {
-        print("ペリフェラル復元: \(dict)")
+        //print("ペリフェラル復元: \(dict)")
     }
 }
 

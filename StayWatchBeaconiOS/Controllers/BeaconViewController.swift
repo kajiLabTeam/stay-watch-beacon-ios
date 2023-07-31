@@ -12,15 +12,12 @@ class BeaconViewController: ObservableObject {
     
     func synchUser (keyChain:KeyChainModel, firebaseAuth:FirebaseAuthenticationModel, peripheral:PeripheralModel) {
         guard let data = keyChain.get() else {
-            print("KeyChaneユーザの読み込みに失敗したドン。。。")
+            print("KeyChaneユーザの読み込みに失敗")
             self.signIn(firebaseAuth: firebaseAuth, peripheral: peripheral, keyChain: keyChain)
             return
         }
-
         let token = String(decoding: data, as: UTF8.self)
-        print("トークンはなーんだ")
-        print(token)
-
+        
         // ユーザ情報の取得、保存、アドバタイズ開始までやる(エラーチェックありの非同期処理にしたい)
         firebaseAuth.getUserByToken(token: token, peripheral: peripheral, keyChain: keyChain)
     }
@@ -35,13 +32,11 @@ class BeaconViewController: ObservableObject {
     }
 
     func startAdvertising(peripheral: PeripheralModel) {
-        print("アドバタイズスタート")
         peripheral.stopAdvertising()    // 更新するために一回停止させる
         peripheral.startAdvertisingWithOption()
     }
 
     func stopAdvertising(peripheral: PeripheralModel) {
-        print("アドバタイズストップ")
         peripheral.stopAdvertising()
     }
 }

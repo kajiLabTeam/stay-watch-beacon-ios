@@ -8,9 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		AB27A4A52A710E0B00E8921E /* ManufacturerUUIDMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB27A4A42A710E0B00E8921E /* ManufacturerUUIDMap.swift */; };
-		AB27A4A72A720D9300E8921E /* AdvertiseUUIDManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB27A4A62A720D9300E8921E /* AdvertiseUUIDManager.swift */; };
 		AB27A4AA2A73B31A00E8921E /* BeaconViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB27A4A92A73B31A00E8921E /* BeaconViewController.swift */; };
-		AB27A4AC2A775C6200E8921E /* UserStateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB27A4AB2A775C6200E8921E /* UserStateModel.swift */; };
 		AB27A4AE2A775CD200E8921E /* KeyChainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB27A4AD2A775CD200E8921E /* KeyChainModel.swift */; };
 		AB27A4B02A775DB600E8921E /* FirebaseAuthenticationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB27A4AF2A775DB600E8921E /* FirebaseAuthenticationModel.swift */; };
 		AB27A4B22A77761C00E8921E /* PeripheralModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB27A4B12A77761C00E8921E /* PeripheralModel.swift */; };
@@ -19,19 +17,11 @@
 		AB5DFBDC2A780EAD009C18F9 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5DFBDB2A780EAD009C18F9 /* HeaderView.swift */; };
 		AB5DFBDE2A7811B8009C18F9 /* BeaconStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5DFBDD2A7811B8009C18F9 /* BeaconStatusView.swift */; };
 		AB6F48522A550DBC00DD6683 /* BeaconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6F48512A550DBC00DD6683 /* BeaconView.swift */; };
-		AB6F48542A5555B000DD6683 /* FirebaseAuthController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6F48532A5555B000DD6683 /* FirebaseAuthController.swift */; };
 		AB6F48802A5CE29000DD6683 /* UserUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6F487F2A5CE29000DD6683 /* UserUtil.swift */; };
-		AB6F48822A5E546F00DD6683 /* TokenStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6F48812A5E546F00DD6683 /* TokenStorage.swift */; };
-		AB6F48842A5E8C5200DD6683 /* TestKeyChainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6F48832A5E8C5200DD6683 /* TestKeyChainView.swift */; };
 		AB7CF3BB2A15BEE80008558A /* StayWatchBeaconiOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7CF3BA2A15BEE80008558A /* StayWatchBeaconiOSApp.swift */; };
 		AB7CF3BD2A15BEE80008558A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7CF3BC2A15BEE80008558A /* ContentView.swift */; };
 		AB7CF3BF2A15BEE90008558A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB7CF3BE2A15BEE90008558A /* Assets.xcassets */; };
 		AB7CF3C22A15BEE90008558A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB7CF3C12A15BEE90008558A /* Preview Assets.xcassets */; };
-		ABAB5C052A303B4F003F0CBB /* CentralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAB5C042A303B4F003F0CBB /* CentralManager.swift */; };
-		ABAB5C072A3040CB003F0CBB /* PeripheralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAB5C062A3040CB003F0CBB /* PeripheralManager.swift */; };
-		ABAB5C152A429AAF003F0CBB /* UserState.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAB5C142A429AAF003F0CBB /* UserState.swift */; };
-		ABAB5C172A429D4D003F0CBB /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAB5C162A429D4D003F0CBB /* UserView.swift */; };
-		ABAB5C1B2A45E25F003F0CBB /* BleTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAB5C1A2A45E25F003F0CBB /* BleTestView.swift */; };
 		ABAB5C432A492BD4003F0CBB /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = ABAB5C422A492BD4003F0CBB /* FirebaseAnalytics */; };
 		ABAB5C452A492BD4003F0CBB /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = ABAB5C442A492BD4003F0CBB /* FirebaseAnalyticsOnDeviceConversion */; };
 		ABAB5C472A492BD4003F0CBB /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = ABAB5C462A492BD4003F0CBB /* FirebaseAnalyticsSwift */; };
@@ -67,9 +57,7 @@
 
 /* Begin PBXFileReference section */
 		AB27A4A42A710E0B00E8921E /* ManufacturerUUIDMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManufacturerUUIDMap.swift; sourceTree = "<group>"; };
-		AB27A4A62A720D9300E8921E /* AdvertiseUUIDManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertiseUUIDManager.swift; sourceTree = "<group>"; };
 		AB27A4A92A73B31A00E8921E /* BeaconViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeaconViewController.swift; sourceTree = "<group>"; };
-		AB27A4AB2A775C6200E8921E /* UserStateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStateModel.swift; sourceTree = "<group>"; };
 		AB27A4AD2A775CD200E8921E /* KeyChainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainModel.swift; sourceTree = "<group>"; };
 		AB27A4AF2A775DB600E8921E /* FirebaseAuthenticationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthenticationModel.swift; sourceTree = "<group>"; };
 		AB27A4B12A77761C00E8921E /* PeripheralModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeripheralModel.swift; sourceTree = "<group>"; };
@@ -79,20 +67,12 @@
 		AB5DFBDB2A780EAD009C18F9 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		AB5DFBDD2A7811B8009C18F9 /* BeaconStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeaconStatusView.swift; sourceTree = "<group>"; };
 		AB6F48512A550DBC00DD6683 /* BeaconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeaconView.swift; sourceTree = "<group>"; };
-		AB6F48532A5555B000DD6683 /* FirebaseAuthController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthController.swift; sourceTree = "<group>"; };
 		AB6F487F2A5CE29000DD6683 /* UserUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUtil.swift; sourceTree = "<group>"; };
-		AB6F48812A5E546F00DD6683 /* TokenStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenStorage.swift; sourceTree = "<group>"; };
-		AB6F48832A5E8C5200DD6683 /* TestKeyChainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestKeyChainView.swift; sourceTree = "<group>"; };
 		AB7CF3B72A15BEE80008558A /* StayWatchBeaconiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StayWatchBeaconiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB7CF3BA2A15BEE80008558A /* StayWatchBeaconiOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StayWatchBeaconiOSApp.swift; sourceTree = "<group>"; };
 		AB7CF3BC2A15BEE80008558A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		AB7CF3BE2A15BEE90008558A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AB7CF3C12A15BEE90008558A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		ABAB5C042A303B4F003F0CBB /* CentralManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CentralManager.swift; sourceTree = "<group>"; };
-		ABAB5C062A3040CB003F0CBB /* PeripheralManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeripheralManager.swift; sourceTree = "<group>"; };
-		ABAB5C142A429AAF003F0CBB /* UserState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserState.swift; sourceTree = "<group>"; };
-		ABAB5C162A429D4D003F0CBB /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
-		ABAB5C1A2A45E25F003F0CBB /* BleTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BleTestView.swift; sourceTree = "<group>"; };
 		ABAB5C7D2A49523B003F0CBB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -137,19 +117,10 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		AB27A4A82A73B2FA00E8921E /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				AB27A4A92A73B31A00E8921E /* BeaconViewController.swift */,
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
 		AB6F487E2A5CE25700DD6683 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
 				AB6F487F2A5CE29000DD6683 /* UserUtil.swift */,
-				AB6F48812A5E546F00DD6683 /* TokenStorage.swift */,
 				AB27A4A42A710E0B00E8921E /* ManufacturerUUIDMap.swift */,
 			);
 			path = Utils;
@@ -174,7 +145,6 @@
 		AB7CF3B92A15BEE80008558A /* StayWatchBeaconiOS */ = {
 			isa = PBXGroup;
 			children = (
-				AB27A4A82A73B2FA00E8921E /* ViewController */,
 				AB6F487E2A5CE25700DD6683 /* Utils */,
 				ABAB5C7D2A49523B003F0CBB /* GoogleService-Info.plist */,
 				ABAB5C132A429A99003F0CBB /* Models */,
@@ -199,10 +169,7 @@
 		ABAB5C022A3039BB003F0CBB /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				ABAB5C042A303B4F003F0CBB /* CentralManager.swift */,
-				ABAB5C062A3040CB003F0CBB /* PeripheralManager.swift */,
-				AB6F48532A5555B000DD6683 /* FirebaseAuthController.swift */,
-				AB27A4A62A720D9300E8921E /* AdvertiseUUIDManager.swift */,
+				AB27A4A92A73B31A00E8921E /* BeaconViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -211,10 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				AB7CF3BC2A15BEE80008558A /* ContentView.swift */,
-				ABAB5C162A429D4D003F0CBB /* UserView.swift */,
-				ABAB5C1A2A45E25F003F0CBB /* BleTestView.swift */,
 				AB6F48512A550DBC00DD6683 /* BeaconView.swift */,
-				AB6F48832A5E8C5200DD6683 /* TestKeyChainView.swift */,
 				AB5DFBD92A780D8B009C18F9 /* SigninView.swift */,
 				AB5DFBDB2A780EAD009C18F9 /* HeaderView.swift */,
 				AB5DFBDD2A7811B8009C18F9 /* BeaconStatusView.swift */,
@@ -225,8 +189,6 @@
 		ABAB5C132A429A99003F0CBB /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				ABAB5C142A429AAF003F0CBB /* UserState.swift */,
-				AB27A4AB2A775C6200E8921E /* UserStateModel.swift */,
 				AB27A4AD2A775CD200E8921E /* KeyChainModel.swift */,
 				AB27A4AF2A775DB600E8921E /* FirebaseAuthenticationModel.swift */,
 				AB27A4B12A77761C00E8921E /* PeripheralModel.swift */,
@@ -343,27 +305,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB27A4AC2A775C6200E8921E /* UserStateModel.swift in Sources */,
 				AB7CF3BD2A15BEE80008558A /* ContentView.swift in Sources */,
 				AB27A4B42A77774F00E8921E /* AdvertiseUUIDModel.swift in Sources */,
 				AB27A4B02A775DB600E8921E /* FirebaseAuthenticationModel.swift in Sources */,
 				AB27A4AA2A73B31A00E8921E /* BeaconViewController.swift in Sources */,
 				AB5DFBDA2A780D8B009C18F9 /* SigninView.swift in Sources */,
-				ABAB5C152A429AAF003F0CBB /* UserState.swift in Sources */,
 				AB5DFBDC2A780EAD009C18F9 /* HeaderView.swift in Sources */,
-				AB27A4A72A720D9300E8921E /* AdvertiseUUIDManager.swift in Sources */,
 				AB27A4AE2A775CD200E8921E /* KeyChainModel.swift in Sources */,
-				AB6F48542A5555B000DD6683 /* FirebaseAuthController.swift in Sources */,
-				ABAB5C072A3040CB003F0CBB /* PeripheralManager.swift in Sources */,
 				AB7CF3BB2A15BEE80008558A /* StayWatchBeaconiOSApp.swift in Sources */,
-				AB6F48822A5E546F00DD6683 /* TokenStorage.swift in Sources */,
-				ABAB5C052A303B4F003F0CBB /* CentralManager.swift in Sources */,
 				AB27A4A52A710E0B00E8921E /* ManufacturerUUIDMap.swift in Sources */,
-				ABAB5C1B2A45E25F003F0CBB /* BleTestView.swift in Sources */,
 				AB27A4B22A77761C00E8921E /* PeripheralModel.swift in Sources */,
-				AB6F48842A5E8C5200DD6683 /* TestKeyChainView.swift in Sources */,
 				AB5DFBDE2A7811B8009C18F9 /* BeaconStatusView.swift in Sources */,
-				ABAB5C172A429D4D003F0CBB /* UserView.swift in Sources */,
 				AB6F48802A5CE29000DD6683 /* UserUtil.swift in Sources */,
 				AB6F48522A550DBC00DD6683 /* BeaconView.swift in Sources */,
 			);

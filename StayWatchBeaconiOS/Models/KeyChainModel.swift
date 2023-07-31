@@ -33,17 +33,15 @@ class KeyChainModel: ObservableObject {
         // 既に保存されている場合更新（削除、新規作成する）
         guard status != errSecDuplicateItem else {
             SecItemDelete(query as CFDictionary)
-            print("keychainを削除したどん")
             SecItemAdd(query as CFDictionary, nil)
-            print("keychainを更新したドン")
             throw KeychainError.duplicateEntry
         }
         
         guard status == errSecSuccess else {
+            // save失敗
             throw KeychainError.unknown(status)
         }
-        
-        print("saveしたどん")
+        // save成功
     }
     
     func get() -> Data? {
@@ -61,9 +59,7 @@ class KeyChainModel: ObservableObject {
             query as CFDictionary,
             &result
         )
-        
-        print("getした Read status: \(status)")
-        
+        //print("getした Read status: \(status)")
         return result as? Data
     }
     
@@ -80,7 +76,6 @@ class KeyChainModel: ObservableObject {
         guard status == errSecSuccess || status == errSecItemNotFound else {
             throw KeychainError.unknown(status)
         }
-        
-        print("deleteしたどん")
+        // 削除成功
     }
 }

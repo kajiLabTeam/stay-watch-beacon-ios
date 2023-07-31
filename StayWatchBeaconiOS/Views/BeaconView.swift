@@ -10,12 +10,10 @@ import Foundation
 import SwiftUI
 import CoreBluetooth
 
-// Centralを見るためのContentView
 struct BeaconView: View {
     
     @StateObject var peripheral = PeripheralModel()
     @StateObject var firebaseAuth = FirebaseAuthenticationModel()
-    @StateObject var tokenStorage = TokenStorage()
     @StateObject var viewController = BeaconViewController()
     @StateObject var keyChain = KeyChainModel()
     @ObservedObject var user = UserUtil()
