@@ -30,13 +30,12 @@ class KeyChainModel: ObservableObject {
         
         let status = SecItemAdd(query as CFDictionary, nil)
         
-        // 既に保存されている場合更新
+        // 既に保存されている場合更新（削除、新規作成する）
         guard status != errSecDuplicateItem else {
-            let attributes: [String: AnyObject] = [
-                kSecValueData as String: token as AnyObject
-            ]
-            SecItemUpdate(query as CFDictionary, attributes as CFDictionary)
-            print("updateしたどん")
+            SecItemDelete(query as CFDictionary)
+            print("keychainを削除したどん")
+            SecItemAdd(query as CFDictionary, nil)
+            print("keychainを更新したドン")
             throw KeychainError.duplicateEntry
         }
         
