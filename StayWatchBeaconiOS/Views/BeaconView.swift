@@ -13,31 +13,15 @@ import CoreBluetooth
 // Centralを見るためのContentView
 struct BeaconView: View {
     
-    @StateObject var peripheralManager = PeripheralManager()
-    @StateObject var firebaseController = FirebaseAuthController()
+    @StateObject var peripheral = PeripheralModel()
+    @StateObject var firebaseAuth = FirebaseAuthenticationModel()
     @StateObject var tokenStorage = TokenStorage()
-    
+    @StateObject var viewController = BeaconViewController()
+    @StateObject var keyChain = KeyChainModel()
+
     let IPHONE_CHARACTER:Character = "a"
-    
-    @State var synchoronizationTime = "2023/04/01 11:53"
-    
-    //var user = UserState(name: "", uuid: "", email: "", communityName: "", latestSyncTime: "")
-    @StateObject var user = UserUtil()
-    
-    @State var isUserSignIn = false
-    
-    func synchUser () {
-        guard let data = tokenStorage.get() else {
-            print("KeyChaneユーザの読み込みに失敗したドン。。。")
-            firebaseController.googleAuth(peripheral: peripheralManager, tokenStorage: tokenStorage)
-            return
-        }
-        
-        let token = String(decoding: data, as: UTF8.self)
-        print("トークンはなーんだ \(token)")
-        
-        firebaseController.getUserByToken(token: token, peripheral: peripheralManager)  // これのエラーチェックしよう
-    }
+//    //var user = UserState(name: "", uuid: "", email: "", communityName: "", latestSyncTime: "")
+    @ObservedObject var user = UserUtil()
     
     var body: some View {
         VStack {
@@ -51,7 +35,7 @@ struct BeaconView: View {
                 .font(.title)
                 Spacer()
                 Button(action: {
-                    firebaseController.googleAuth(peripheral: peripheralManager, tokenStorage: tokenStorage)
+                    viewController.signIn(firebaseAuth: firebaseAuth, peripheral: peripheral, keyChain: keyChain)
                 }) {
                     Text("Googleアカウントでサインイン")
                         .padding()
@@ -73,9 +57,8 @@ struct BeaconView: View {
                         Spacer()
                         VStack {
                             Button(action: {
-                                //print(type(of: peripheralManager))
-                                
-                                firebaseController.googleAuth(peripheral: peripheralManager, tokenStorage: tokenStorage)
+//                                firebaseController.googleAuth(peripheral: peripheralManager, tokenStorage: tokenStorage)
+                                viewController.signIn(firebaseAuth: firebaseAuth, peripheral: peripheral, keyChain: keyChain)
                             }) {
                                 Text("別のアカウントでサインイン")
                                     .font(.caption)
@@ -128,13 +111,13 @@ struct BeaconView: View {
                             Text("登録されていません")
                                 .padding(.bottom, 5)
                         }else{
-                            Text(peripheralManager.isAdvertising ? "発信中" : "停止中")
+                            Text(viewController.isAdvertising(peripheral: peripheral) ? "発信中" : "停止中")
                                 .padding()
                                 .frame(width:290, height: 200)
                                 .foregroundColor(Color.white)
                                 .font(.system(size:54.0))
                             //.background(Color.red)
-                                .background(peripheralManager.isAdvertising ? Color.blue : Color.red)
+                                .background(viewController.isAdvertising(peripheral: peripheral) ? Color.blue : Color.red)
                                 .cornerRadius(24)
                             //Text(firebaseController.userName)
                             Text(user.name)
@@ -147,7 +130,7 @@ struct BeaconView: View {
                                 .padding(.bottom, 5)
                         }
                         Button(action: {
-                            synchUser()
+                            viewController.synchUser(keyChain: keyChain, firebaseAuth: firebaseAuth, peripheral: peripheral)
                         }) {
                             Image(systemName: "arrow.triangle.2.circlepath.circle")
                                 .font(.system(size: 50))
@@ -170,14 +153,14 @@ struct BeaconView: View {
                 //if(firebaseController.uuid != "" && firebaseController.uuid.dropFirst(27).first == "a"){
                 if(user.uuid != "" && user.uuid.dropFirst(27).first == IPHONE_CHARACTER){
                     Button(action: {
-                        if peripheralManager.isAdvertising {
-                            peripheralManager.stopAdvertising()
+                        if viewController.isAdvertising(peripheral: peripheral) {
+                            viewController.stopAdvertising(peripheral: peripheral)
                         }else{
-                            peripheralManager.startAdvertisingWithOption()
+                            viewController.startAdvertising(peripheral: peripheral)
                         }
                         
                     }) {
-                        Text(peripheralManager.isAdvertising ? "発信を停止する" : "発信を開始する")
+                        Text(viewController.isAdvertising(peripheral: peripheral) ? "発信を停止する" : "発信を開始する")
                             .padding()
                             .foregroundColor(Color.gray)
                     }
@@ -191,8 +174,8 @@ struct BeaconView: View {
 }
 
 
-struct BeaconView_Previews: PreviewProvider {
-    static var previews: some View {
-        BeaconView()
-    }
-}
+//struct BeaconView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        BeaconView()
+//    }
+//}

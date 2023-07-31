@@ -13,23 +13,7 @@ struct ContentView: View {
     
     var body: some View {
         
-        //TestKeyChainView()
-        BeaconView()
-        //BleTestView(argument: "Hello previews")
-
-//        NavigationView{
-//            VStack {
-//                NavigationLink(destination: BleTestView(argument: "Hello previews")){
-//                    Text("BLEテスト画面へ")
-//                }
-//                NavigationLink(destination: SigninView()){
-//                    Text("Signin画面へ")
-//                }
-//                NavigationLink(destination: BeaconView()){
-//                    Text("本番アプリへ")
-//                }
-//            }
-//        }
+        BeaconView(viewController: BeaconViewController())
     }
 }
 

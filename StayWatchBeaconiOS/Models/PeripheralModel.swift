@@ -1,17 +1,14 @@
 //
-//  PeripheralManager.swift
+//  PeripheralModel.swift
 //  StayWatchBeaconiOS
 //
-//  Created by 戸川浩汰 on 2023/06/07.
+//  Created by 戸川浩汰 on 2023/07/31.
 //
 
 import Foundation
 import CoreBluetooth
-import UIKit
-import SwiftUI
 
-//Bluetoothペリフェラルとしてカウントを管理するクラス
-class PeripheralManager: NSObject, ObservableObject, CBPeripheralManagerDelegate {
+class PeripheralModel: NSObject, ObservableObject, CBPeripheralManagerDelegate {
     
     
     //     カウントを管理するPublishedプロパティ
@@ -22,12 +19,9 @@ class PeripheralManager: NSObject, ObservableObject, CBPeripheralManagerDelegate
     // Bluetoothペリフェラルマネージャ
     var peripheralManager: CBPeripheralManager!
     
-    let advertiseUUIDManager = AdvertiseUUIDManager()
+    let advertiseUUIDModel = AdvertiseUUIDModel()
     // サービスとキャラクタリスティックのUUID
     let characteristicUUID = CBUUID(string: "b37e1ccd-b930-a45e-abef-07f9232b5a81")
-    
-    @StateObject var user = UserUtil()
-    
     
     override init() {
         super.init()
@@ -56,10 +50,9 @@ class PeripheralManager: NSObject, ObservableObject, CBPeripheralManagerDelegate
     // アドバタイズを開始するメソッド
     func startAdvertisingWithOption() {
         // サービスとキャラクタリスティックを作成し、ペリフェラルマネージャに追加
-        //serviceUUIDStr = UserDefaults.standard.string(forKey: "uuid")!
+        serviceUUIDStr = UserDefaults.standard.string(forKey: "uuid")!
         
-        let serviceUUIDs = advertiseUUIDManager.generateAdvertisingUUIDs(inputUUID: serviceUUIDStr)
-        //let serviceUUIDs = [CBUUID(string:"e7d61ea3-f8dd-49c8-8f2f-f24a0020002e")]
+        let serviceUUIDs = advertiseUUIDModel.generateAdvertisingUUIDs(inputUUID: serviceUUIDStr)
         print("serviceUUIDsは：")
         print(serviceUUIDs)
         let advertisementData: [String: Any] = [
@@ -73,7 +66,7 @@ class PeripheralManager: NSObject, ObservableObject, CBPeripheralManagerDelegate
         isAdvertising = true
         advertisingServiceUUIDStr = serviceUUIDStr
     }
-
+    
     // アドバタイズを終了するメソッド
     func stopAdvertising() {
         print("アドバタイズ終了")

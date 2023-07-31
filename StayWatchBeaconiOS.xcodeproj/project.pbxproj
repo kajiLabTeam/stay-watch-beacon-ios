@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		AB27A4A52A710E0B00E8921E /* ManufacturerUUIDMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB27A4A42A710E0B00E8921E /* ManufacturerUUIDMap.swift */; };
 		AB27A4A72A720D9300E8921E /* AdvertiseUUIDManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB27A4A62A720D9300E8921E /* AdvertiseUUIDManager.swift */; };
+		AB27A4AA2A73B31A00E8921E /* BeaconViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB27A4A92A73B31A00E8921E /* BeaconViewController.swift */; };
+		AB27A4AC2A775C6200E8921E /* UserStateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB27A4AB2A775C6200E8921E /* UserStateModel.swift */; };
+		AB27A4AE2A775CD200E8921E /* KeyChainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB27A4AD2A775CD200E8921E /* KeyChainModel.swift */; };
+		AB27A4B02A775DB600E8921E /* FirebaseAuthenticationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB27A4AF2A775DB600E8921E /* FirebaseAuthenticationModel.swift */; };
+		AB27A4B22A77761C00E8921E /* PeripheralModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB27A4B12A77761C00E8921E /* PeripheralModel.swift */; };
+		AB27A4B42A77774F00E8921E /* AdvertiseUUIDModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB27A4B32A77774F00E8921E /* AdvertiseUUIDModel.swift */; };
 		AB6F48522A550DBC00DD6683 /* BeaconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6F48512A550DBC00DD6683 /* BeaconView.swift */; };
 		AB6F48542A5555B000DD6683 /* FirebaseAuthController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6F48532A5555B000DD6683 /* FirebaseAuthController.swift */; };
 		AB6F48802A5CE29000DD6683 /* UserUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6F487F2A5CE29000DD6683 /* UserUtil.swift */; };
@@ -59,6 +65,12 @@
 /* Begin PBXFileReference section */
 		AB27A4A42A710E0B00E8921E /* ManufacturerUUIDMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManufacturerUUIDMap.swift; sourceTree = "<group>"; };
 		AB27A4A62A720D9300E8921E /* AdvertiseUUIDManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertiseUUIDManager.swift; sourceTree = "<group>"; };
+		AB27A4A92A73B31A00E8921E /* BeaconViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeaconViewController.swift; sourceTree = "<group>"; };
+		AB27A4AB2A775C6200E8921E /* UserStateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStateModel.swift; sourceTree = "<group>"; };
+		AB27A4AD2A775CD200E8921E /* KeyChainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainModel.swift; sourceTree = "<group>"; };
+		AB27A4AF2A775DB600E8921E /* FirebaseAuthenticationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthenticationModel.swift; sourceTree = "<group>"; };
+		AB27A4B12A77761C00E8921E /* PeripheralModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeripheralModel.swift; sourceTree = "<group>"; };
+		AB27A4B32A77774F00E8921E /* AdvertiseUUIDModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertiseUUIDModel.swift; sourceTree = "<group>"; };
 		AB42A22E2A249CEE00C9D46F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		AB6F48512A550DBC00DD6683 /* BeaconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeaconView.swift; sourceTree = "<group>"; };
 		AB6F48532A5555B000DD6683 /* FirebaseAuthController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthController.swift; sourceTree = "<group>"; };
@@ -119,6 +131,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AB27A4A82A73B2FA00E8921E /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				AB27A4A92A73B31A00E8921E /* BeaconViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		AB6F487E2A5CE25700DD6683 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -148,6 +168,7 @@
 		AB7CF3B92A15BEE80008558A /* StayWatchBeaconiOS */ = {
 			isa = PBXGroup;
 			children = (
+				AB27A4A82A73B2FA00E8921E /* ViewController */,
 				AB6F487E2A5CE25700DD6683 /* Utils */,
 				ABAB5C7D2A49523B003F0CBB /* GoogleService-Info.plist */,
 				ABAB5C132A429A99003F0CBB /* Models */,
@@ -196,6 +217,11 @@
 			isa = PBXGroup;
 			children = (
 				ABAB5C142A429AAF003F0CBB /* UserState.swift */,
+				AB27A4AB2A775C6200E8921E /* UserStateModel.swift */,
+				AB27A4AD2A775CD200E8921E /* KeyChainModel.swift */,
+				AB27A4AF2A775DB600E8921E /* FirebaseAuthenticationModel.swift */,
+				AB27A4B12A77761C00E8921E /* PeripheralModel.swift */,
+				AB27A4B32A77774F00E8921E /* AdvertiseUUIDModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -308,9 +334,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB27A4AC2A775C6200E8921E /* UserStateModel.swift in Sources */,
 				AB7CF3BD2A15BEE80008558A /* ContentView.swift in Sources */,
+				AB27A4B42A77774F00E8921E /* AdvertiseUUIDModel.swift in Sources */,
+				AB27A4B02A775DB600E8921E /* FirebaseAuthenticationModel.swift in Sources */,
+				AB27A4AA2A73B31A00E8921E /* BeaconViewController.swift in Sources */,
 				ABAB5C152A429AAF003F0CBB /* UserState.swift in Sources */,
 				AB27A4A72A720D9300E8921E /* AdvertiseUUIDManager.swift in Sources */,
+				AB27A4AE2A775CD200E8921E /* KeyChainModel.swift in Sources */,
 				AB6F48542A5555B000DD6683 /* FirebaseAuthController.swift in Sources */,
 				ABAB5C072A3040CB003F0CBB /* PeripheralManager.swift in Sources */,
 				AB7CF3BB2A15BEE80008558A /* StayWatchBeaconiOSApp.swift in Sources */,
@@ -318,6 +349,7 @@
 				ABAB5C052A303B4F003F0CBB /* CentralManager.swift in Sources */,
 				AB27A4A52A710E0B00E8921E /* ManufacturerUUIDMap.swift in Sources */,
 				ABAB5C1B2A45E25F003F0CBB /* BleTestView.swift in Sources */,
+				AB27A4B22A77761C00E8921E /* PeripheralModel.swift in Sources */,
 				AB6F48842A5E8C5200DD6683 /* TestKeyChainView.swift in Sources */,
 				ABAB5C172A429D4D003F0CBB /* UserView.swift in Sources */,
 				AB6F48802A5CE29000DD6683 /* UserUtil.swift in Sources */,

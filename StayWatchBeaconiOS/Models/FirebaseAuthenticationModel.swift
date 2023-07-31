@@ -1,29 +1,27 @@
 //
-//  FirebaseAuthController.swift
+//  FirebaseAuthenticationModel.swift
 //  StayWatchBeaconiOS
 //
-//  Created by 戸川浩汰 on 2023/07/05.
+//  Created by 戸川浩汰 on 2023/07/31.
 //
 
 import Foundation
-import SwiftUI
-
 import FirebaseCore
 import FirebaseAuth
 import GoogleSignIn
 
 import Alamofire
 
-struct User: Codable {
-    let id: Int
-    let role: Int
-    let uuid: String
-    let name: String
-    let communityId: Int
-    let communityName: String
-}
+//struct User: Codable {
+//    let id: Int
+//    let role: Int
+//    let uuid: String
+//    let name: String
+//    let communityId: Int
+//    let communityName: String
+//}
 
-class FirebaseAuthController: NSObject, ObservableObject{
+class FirebaseAuthenticationModel: NSObject, ObservableObject{
     
     @Published var email = ""
     @Published var communityName = "noen"
@@ -47,11 +45,10 @@ class FirebaseAuthController: NSObject, ObservableObject{
         return outputUUID
     }
     
-    func getUserByToken(token: String, peripheral: PeripheralManager) -> String? {
+    func getUserByToken(token: String, peripheral: PeripheralModel) -> String? {
         var result:String? = nil
         // TokenをもちいてAPIを叩く
         AF.request("https://go-staywatch.kajilab.tk/api/v1/check", method: .get, headers: HTTPHeaders(["Authorization":"Bearer \(token)"]))
-        //AF.request("http://192.168.101.8:8082/api/v1/check", method: .get, headers: HTTPHeaders(["Authorization":"Bearer \(token)"]))   // ローカル
             .validate()
             .responseDecodable(of: User.self) {response in
                 switch response.result {
@@ -84,9 +81,8 @@ class FirebaseAuthController: NSObject, ObservableObject{
         return result
     }
     
-    func googleAuth(peripheral: PeripheralManager, tokenStorage: TokenStorage) {
-        //var firebaseController:PeripheralManager
-        
+    func googleAuth(peripheral: PeripheralModel, keyChainModel: KeyChainModel) {
+        // トークンの取得、保存、アドバタイズ開始までやる
         guard let clientID:String = FirebaseApp.app()?.options.clientID else { return }
         let config:GIDConfiguration = GIDConfiguration(clientID: clientID)
         
@@ -108,11 +104,11 @@ class FirebaseAuthController: NSObject, ObservableObject{
             }
             
             let credential = GoogleAuthProvider.credential(withIDToken: idToken,accessToken: user.accessToken.tokenString)
-            self.login(credential: credential, peripheral: peripheral, tokenStorage: tokenStorage)
+            self.login(credential: credential, peripheral: peripheral, keyChainModel: keyChainModel)
         }
     }
     
-    func login(credential: AuthCredential, peripheral: PeripheralManager, tokenStorage: TokenStorage) {
+    func login(credential: AuthCredential, peripheral: PeripheralModel, keyChainModel: KeyChainModel) {
         Auth.auth().signIn(with: credential) { (authResult, error) in
             if let error = error {
                 print("サインイン失敗だドン。。。")
@@ -145,7 +141,7 @@ class FirebaseAuthController: NSObject, ObservableObject{
                     print(idToken)
                     
                     do {
-                        try tokenStorage.save(token: idToken)
+                        try keyChainModel.save(token: idToken)
                     }
                     catch {
                         print(error)
