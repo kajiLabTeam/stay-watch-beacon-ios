@@ -21,14 +21,8 @@ class BeaconViewController: ObservableObject {
         print("トークンはなーんだ")
         print(token)
 
-        // ユーザ情報の取得、保存、アドバタイズ開始までやる
-        if let _ = firebaseAuth.getUserByToken(token: token, peripheral: peripheral) {
-            print("トークンが正しくありません")
-            self.signIn(firebaseAuth: firebaseAuth, peripheral: peripheral, keyChain: keyChain)
-        } else {
-            print("ユーザ情報の保存に成功")
-        }
-        print("同期開始")
+        // ユーザ情報の取得、保存、アドバタイズ開始までやる(エラーチェックありの非同期処理にしたい)
+        firebaseAuth.getUserByToken(token: token, peripheral: peripheral, keyChain: keyChain)
     }
 
     func signIn(firebaseAuth:FirebaseAuthenticationModel, peripheral:PeripheralModel, keyChain:KeyChainModel){
@@ -41,8 +35,6 @@ class BeaconViewController: ObservableObject {
     }
 
     func startAdvertising(peripheral: PeripheralModel) {
-        let advertiseUUIDModel = AdvertiseUUIDModel()
-        
         print("アドバタイズスタート")
         peripheral.stopAdvertising()    // 更新するために一回停止させる
         peripheral.startAdvertisingWithOption()

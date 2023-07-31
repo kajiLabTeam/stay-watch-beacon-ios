@@ -23,10 +23,11 @@ import Alamofire
 
 class FirebaseAuthenticationModel: NSObject, ObservableObject{
     
-    @Published var email = ""
-    @Published var communityName = "noen"
-    @Published var userName = "none"
-    @Published var uuid = ""
+    var email = ""
+    var communityName = "none"
+    var userName = "none"
+    var uuid = ""
+    var latestSyncTime = ""
     
     override init() {
         super.init()
@@ -45,8 +46,7 @@ class FirebaseAuthenticationModel: NSObject, ObservableObject{
         return outputUUID
     }
     
-    func getUserByToken(token: String, peripheral: PeripheralModel) -> String? {
-        var result:String? = nil
+    func getUserByToken(token: String, peripheral: PeripheralModel, keyChain: KeyChainModel) {
         // TokenをもちいてAPIを叩く
         AF.request("https://go-staywatch.kajilab.tk/api/v1/check", method: .get, headers: HTTPHeaders(["Authorization":"Bearer \(token)"]))
             .validate()
@@ -56,13 +56,21 @@ class FirebaseAuthenticationModel: NSObject, ObservableObject{
                     // API通信成功時の処理
                     print("API通信成功だドン！！")
                     print(user)
+                    // 現在時刻の取得
+                    let currentDate = Date()
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = "yyyy/MM/dd HH:mm"
+                    self.latestSyncTime = dateFormatter.string(from: currentDate)
+                    // ユーザ情報
                     self.uuid = self.convertToUUIDFormat(rawUuid: user.uuid)
                     print("フォーマット後のUUIDは \(self.uuid)")
                     self.userName = user.name
                     self.communityName = user.communityName
+                    //self.latestSyncTime = Date()
                     UserDefaults.standard.set(self.uuid, forKey: "uuid")
                     UserDefaults.standard.set(self.communityName, forKey: "communityName")
                     UserDefaults.standard.set(self.userName, forKey: "userName")
+                    UserDefaults.standard.set(self.latestSyncTime, forKey:"latestSyncTime")
                     peripheral.serviceUUIDStr = self.uuid
                     peripheral.stopAdvertising()
                     peripheral.startAdvertisingWithOption()
@@ -71,14 +79,15 @@ class FirebaseAuthenticationModel: NSObject, ObservableObject{
                     print(UserDefaults.standard.string(forKey: "uuid"))
                     print(UserDefaults.standard.string(forKey: "communityName"))
                     print(UserDefaults.standard.string(forKey: "userName"))
+                    print(UserDefaults.standard.string(forKey: "latestSyncTime"))
                 case .failure(let error):
                     // API通信失敗時の処理
                     print("API通信失敗だドン。。。。。")
                     print(error)
-                    result = error.localizedDescription
+                    // サインインし直す
+                    self.googleAuth(peripheral: peripheral, keyChainModel: keyChain)
                 }
             }
-        return result
     }
     
     func googleAuth(peripheral: PeripheralModel, keyChainModel: KeyChainModel) {
@@ -147,10 +156,7 @@ class FirebaseAuthenticationModel: NSObject, ObservableObject{
                         print(error)
                     }
                     
-                    guard let err = self.getUserByToken(token: idToken, peripheral: peripheral) else {
-                        print("トークンからユーザ情報の取得に失敗")
-                        return
-                    }
+                    self.getUserByToken(token: idToken, peripheral: peripheral, keyChain: keyChainModel)
                 }
             }
         }
