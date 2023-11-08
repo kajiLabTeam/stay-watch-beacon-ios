@@ -17,14 +17,12 @@ struct User: Codable {
     let role: Int
     let uuid: String
     let name: String
-    let communityId: Int
-    let communityName: String
 }
 
 class FirebaseAuthenticationModel: NSObject, ObservableObject{
     
     var email = ""
-    var communityName = "none"
+//    var communityName = "none"
     var userName = "none"
     var uuid = ""
     var latestSyncTime = ""
@@ -62,10 +60,10 @@ class FirebaseAuthenticationModel: NSObject, ObservableObject{
                     // ユーザ情報
                     self.uuid = self.convertToUUIDFormat(rawUuid: user.uuid)
                     self.userName = user.name
-                    self.communityName = user.communityName
+//                    self.communityName = user.communityName
                     // UserDefaultsへ保存
                     UserDefaults.standard.set(self.uuid, forKey: "uuid")
-                    UserDefaults.standard.set(self.communityName, forKey: "communityName")
+                    //UserDefaults.standard.set(self.communityName, forKey: "communityName")
                     UserDefaults.standard.set(self.userName, forKey: "userName")
                     UserDefaults.standard.set(self.latestSyncTime, forKey:"latestSyncTime")
                     peripheral.serviceUUIDStr = self.uuid

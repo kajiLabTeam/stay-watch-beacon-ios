@@ -38,15 +38,15 @@ class UserUtil: NSObject, ObservableObject {
         }
     }
     
-    var communityName: String {
-        get{
-            guard let out = UserDefaults.standard.string(forKey: "communityName") else {
-                return ""
-            }
-            return out
-        }
-    }
-    
+//    var communityName: String {
+//        get{
+//            guard let out = UserDefaults.standard.string(forKey: "communityName") else {
+//                return ""
+//            }
+//            return out
+//        }
+//    }
+  
     var latestSyncTime: String {
         get{
             guard let out = UserDefaults.standard.string(forKey: "latestSyncTime") else {

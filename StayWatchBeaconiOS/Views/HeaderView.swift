@@ -19,8 +19,8 @@ struct HeaderView: View {
         VStack {
             HStack {
                 //Text(firebaseController.communityName)
-                Text(user.communityName)
-                    .font(.title3)
+                Text(user.email)
+                    .font(.caption)
                     .fontWeight(.medium)
                 Spacer()
                 VStack {
@@ -28,7 +28,7 @@ struct HeaderView: View {
                         //                                firebaseController.googleAuth(peripheral: peripheralManager, tokenStorage: tokenStorage)
                         viewController.signIn(firebaseAuth: firebaseAuth, peripheral: peripheral, keyChain: keyChain)
                     }) {
-                        Text("別のアカウントでサインイン")
+                        Text("別のアカウントで\nサインイン")
                             .font(.caption)
                             .padding(.vertical, 5)
                             .padding(.horizontal)
@@ -36,8 +36,8 @@ struct HeaderView: View {
                             .foregroundColor(Color.black)
                     }
                     //Text(firebaseController.email)
-                    Text(user.email)
-                        .font(.caption)
+//                    Text(user.email)
+//                        .font(.caption)
                 }
             }
             .padding(.horizontal, 5)
