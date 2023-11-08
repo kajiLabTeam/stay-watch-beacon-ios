@@ -38,5 +38,7 @@ class BeaconViewController: ObservableObject {
 
     func stopAdvertising(peripheral: PeripheralModel) {
         peripheral.stopAdvertising()
+        // オーバーフロー領域に入った部分は止めることができないため異なるUUIDで書き換える
+        peripheral.startAdvertisingTmpUuid()
     }
 }

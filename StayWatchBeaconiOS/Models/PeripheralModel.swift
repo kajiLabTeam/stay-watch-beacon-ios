@@ -51,7 +51,7 @@ class PeripheralModel: NSObject, ObservableObject, CBPeripheralManagerDelegate {
     func startAdvertisingWithOption() {
         // サービスとキャラクタリスティックを作成し、ペリフェラルマネージャに追加
         //serviceUUIDStr = UserDefaults.standard.string(forKey: "uuid")
-        if let tmpServiceUUIDStr = UserDefaults.standard.string(forKey: "uuid"){
+        if let _ = UserDefaults.standard.string(forKey: "uuid"){
             // nilでない場合
             serviceUUIDStr = UserDefaults.standard.string(forKey: "uuid")!
         } else {
@@ -74,12 +74,23 @@ class PeripheralModel: NSObject, ObservableObject, CBPeripheralManagerDelegate {
         advertisingServiceUUIDStr = serviceUUIDStr
         
         print("アドバタイ図開始")
-        print(serviceUUIDs)
+        //print(serviceUUIDs)
+    }
+    
+    // 一つのUUIDをアドバタイズする
+    func startAdvertisingTmpUuid(){
+        let advertisementData: [String: Any] = [
+            CBAdvertisementDataLocalNameKey: "StayWatchBeaconForiOS",
+            CBAdvertisementDataServiceUUIDsKey: [CBUUID(string: "11111111-1111-1111-1111-111111111111")]
+        ]
+        peripheralManager.startAdvertising(advertisementData)
+        print("アドバタイズ上書き")
     }
     
     // アドバタイズを終了するメソッド
     func stopAdvertising() {
         peripheralManager.stopAdvertising()
+        print("アドバタイズ停止")
         isAdvertising = false
     }
     
