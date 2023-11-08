@@ -15,7 +15,7 @@ struct BeaconStatusView: View {
     @StateObject var keyChain: KeyChainModel
     @ObservedObject var user: UserUtil
     
-    let IPHONE_CHARACTER:Character = "a"
+    let IPHONE_CHARACTER:Character = "1"
     
     var body: some View {
         VStack {

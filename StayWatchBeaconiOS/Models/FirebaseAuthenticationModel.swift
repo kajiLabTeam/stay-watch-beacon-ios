@@ -48,7 +48,7 @@ class FirebaseAuthenticationModel: NSObject, ObservableObject{
     
     func getUserByToken(token: String, peripheral: PeripheralModel, keyChain: KeyChainModel) {
         // TokenをもちいてAPIを叩く
-        AF.request("https://go-staywatch.kajilab.tk/api/v1/check", method: .get, headers: HTTPHeaders(["Authorization":"Bearer \(token)"]))
+        AF.request("https://staywatch-backend.kajilab.tk/api/v1/check", method: .get, headers: HTTPHeaders(["Authorization":"Bearer \(token)"]))
             .validate()
             .responseDecodable(of: User.self) {response in
                 switch response.result {
