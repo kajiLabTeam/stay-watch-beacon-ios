@@ -69,6 +69,7 @@ class FirebaseAuthenticationModel: NSObject, ObservableObject{
                     peripheral.serviceUUIDStr = self.uuid
                     peripheral.stopAdvertising()
                     peripheral.startAdvertisingWithOption()
+                    UserDefaults.standard.set(true, forKey: "isAllowedAdvertising")
                 case .failure(let error):
                     // API通信失敗時の処理
                     print(error)

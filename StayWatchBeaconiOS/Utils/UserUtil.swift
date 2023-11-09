@@ -55,4 +55,15 @@ class UserUtil: NSObject, ObservableObject {
             return out
         }
     }
+    
+    var isAllowedAdvertising: Bool {
+        get{
+            if let out = UserDefaults.standard.value(forKey: "isAllowedAdvertising") as? Bool {
+                // 正常に取得できた場合
+                return out
+            }
+            // 取得できなかった場合
+            return false
+        }
+    }
 }

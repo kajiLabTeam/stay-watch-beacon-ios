@@ -27,18 +27,20 @@ class BeaconViewController: ObservableObject {
         firebaseAuth.googleAuth(peripheral: peripheral, keyChainModel: keyChain)
     }
     
-    func isAdvertising(peripheral: PeripheralModel) -> Bool {
-        return peripheral.isAdvertising
-    }
+//    func isAdvertising(peripheral: PeripheralModel) -> Bool {
+//        return peripheral.isAdvertising
+//    }
 
     func startAdvertising(peripheral: PeripheralModel) {
         peripheral.stopAdvertising()    // 更新するために一回停止させる
         peripheral.startAdvertisingWithOption()
+        UserDefaults.standard.set(true, forKey: "isAllowedAdvertising")
     }
 
     func stopAdvertising(peripheral: PeripheralModel) {
         peripheral.stopAdvertising()
         // オーバーフロー領域に入った部分は止めることができないため異なるUUIDで書き換える
         peripheral.startAdvertisingTmpUuid()
+        UserDefaults.standard.set(false, forKey: "isAllowedAdvertising")
     }
 }

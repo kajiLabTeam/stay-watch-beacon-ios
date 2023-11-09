@@ -10,7 +10,6 @@ import CoreBluetooth
 
 class PeripheralModel: NSObject, ObservableObject, CBPeripheralManagerDelegate {
     
-    
     //     カウントを管理するPublishedプロパティ
     @Published var count = 0
     @Published var isAdvertising = false
@@ -38,7 +37,14 @@ class PeripheralModel: NSObject, ObservableObject, CBPeripheralManagerDelegate {
     func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
         // ペリフェラルマネージャの状態に応じたメッセージを出力
         if peripheral.state == .poweredOn {
+            // アプリ起動時ここが起動される
             print("Peripheral Manager is powered on.")
+            let user = UserUtil()
+            if(!user.isAllowedAdvertising){
+                // アドバタイジングが許されていないならアドバタイジング開始しない
+                print("Advertising is not allowed.")
+                return
+            }
             startAdvertisingWithOption()
             //startAdvertising(advertisementData: [String : "b37e1ccd-b930-a45e-abef-07f9232b5a81"])
         } else {

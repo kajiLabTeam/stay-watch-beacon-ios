@@ -50,13 +50,13 @@ struct BeaconStatusView: View {
                     Text("登録されていません")
                         .padding(.bottom, 5)
                 }else{
-                    Text(viewController.isAdvertising(peripheral: peripheral) ? "発信中" : "停止中")
+                    Text(user.isAllowedAdvertising ? "発信中" : "停止中")
                         .padding()
                         .frame(width:290, height: 200)
                         .foregroundColor(Color.white)
                         .font(.system(size:54.0))
                     //.background(Color.red)
-                        .background(viewController.isAdvertising(peripheral: peripheral) ? Color.blue : Color.red)
+                        .background(user.isAllowedAdvertising ? Color.blue : Color.red)
                         .cornerRadius(24)
                     //Text(firebaseController.userName)
                     Text(user.name)
@@ -91,14 +91,14 @@ struct BeaconStatusView: View {
         // 登録情報があったら発信の開始・停止ボタンを表示する
         if(user.uuid != "" && user.uuid.dropFirst(27).first == IPHONE_CHARACTER){
             Button(action: {
-                if viewController.isAdvertising(peripheral: peripheral) {
+                if user.isAllowedAdvertising {
                     viewController.stopAdvertising(peripheral: peripheral)
                 }else{
                     viewController.startAdvertising(peripheral: peripheral)
                 }
                 
             }) {
-                Text(viewController.isAdvertising(peripheral: peripheral) ? "発信を停止する" : "発信を開始する")
+                Text(user.isAllowedAdvertising ? "発信を停止する" : "発信を開始する")
                     .padding()
                     .foregroundColor(Color.gray)
             }
