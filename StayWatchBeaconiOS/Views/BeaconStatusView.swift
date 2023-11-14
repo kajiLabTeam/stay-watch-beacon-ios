@@ -15,6 +15,7 @@ struct BeaconStatusView: View {
     @StateObject var keyChain: KeyChainModel
     @ObservedObject var user: UserUtil
     
+    @Environment(\.colorScheme) var colorScheme
     let IPHONE_CHARACTER:Character = "1"
     
     var body: some View {
@@ -74,7 +75,7 @@ struct BeaconStatusView: View {
                     Image(systemName: "arrow.triangle.2.circlepath.circle")
                         .font(.system(size: 50))
                         .padding(.top)
-                        .foregroundColor(Color.black)
+                        .foregroundColor(colorScheme == .dark ? .white : .black)
                 }
                 //Text("最新の同期：\(synchoronizationTime)")
                 Text("最新の同期：\(user.latestSyncTime)")

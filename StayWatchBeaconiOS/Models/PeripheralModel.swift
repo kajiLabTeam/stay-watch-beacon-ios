@@ -85,12 +85,15 @@ class PeripheralModel: NSObject, ObservableObject, CBPeripheralManagerDelegate {
     
     // 一つのUUIDをアドバタイズする
     func startAdvertisingTmpUuid(){
+        let randomUuid = UUID()
+        let randomUuidStr = randomUuid.uuidString
         let advertisementData: [String: Any] = [
             CBAdvertisementDataLocalNameKey: "StayWatchBeaconForiOS",
-            CBAdvertisementDataServiceUUIDsKey: [CBUUID(string: "11111111-1111-1111-1111-111111111111")]
+            CBAdvertisementDataServiceUUIDsKey: [CBUUID(string: randomUuidStr)]
         ]
         peripheralManager.startAdvertising(advertisementData)
         print("アドバタイズ上書き")
+        print(randomUuidStr)
     }
     
     // アドバタイズを終了するメソッド

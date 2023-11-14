@@ -15,6 +15,8 @@ struct HeaderView: View {
     @StateObject var keyChain: KeyChainModel
     @ObservedObject var user: UserUtil
     
+    @Environment(\.colorScheme) var colorScheme
+    
     var body: some View {
         VStack {
             HStack {
@@ -33,7 +35,8 @@ struct HeaderView: View {
                             .padding(.vertical, 5)
                             .padding(.horizontal)
                             .border(Color.yellow, width:3.0)
-                            .foregroundColor(Color.black)
+                            .foregroundColor(colorScheme == .dark ? .white : .black)
+                            //.foregroundColor(Color.black)
                     }
                     //Text(firebaseController.email)
 //                    Text(user.email)

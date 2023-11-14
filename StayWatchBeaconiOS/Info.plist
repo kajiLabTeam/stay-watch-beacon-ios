@@ -17,8 +17,6 @@
 			</array>
 		</dict>
 	</array>
-	<key>CFBundleDisplayName</key>
-	<string>滞在ビーコン</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>bluetooth-central</string>
