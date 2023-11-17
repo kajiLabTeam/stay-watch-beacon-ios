@@ -79,7 +79,7 @@ class PeripheralModel: NSObject, ObservableObject, CBPeripheralManagerDelegate {
         isAdvertising = true
         advertisingServiceUUIDStr = serviceUUIDStr
         
-        print("アドバタイ図開始")
+        print("アドバタイズ開始")
         //print(serviceUUIDs)
     }
     

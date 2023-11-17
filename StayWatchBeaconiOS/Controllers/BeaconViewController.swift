@@ -12,7 +12,7 @@ class BeaconViewController: ObservableObject {
     
     func synchUser (keyChain:KeyChainModel, firebaseAuth:FirebaseAuthenticationModel, peripheral:PeripheralModel) {
         guard let data = keyChain.get() else {
-            print("KeyChaneユーザの読み込みに失敗")
+            print("KeyChainユーザの読み込みに失敗")
             self.signIn(firebaseAuth: firebaseAuth, peripheral: peripheral, keyChain: keyChain)
             return
         }
