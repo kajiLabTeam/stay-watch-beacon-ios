@@ -1,42 +1,52 @@
 //
-//  PeripheralManager.swift
+//  PeripheralModel.swift
 //  StayWatchBeaconiOS
 //
-//  Created by 戸川浩汰 on 2023/06/07.
+//  Created by 戸川浩汰 on 2023/07/31.
 //
 
 import Foundation
 import CoreBluetooth
-import UIKit
 
-//Bluetoothペリフェラルとしてカウントを管理するクラス
-class PeripheralManager: NSObject, ObservableObject, CBPeripheralManagerDelegate {
-    
+class PeripheralModel: NSObject, ObservableObject, CBPeripheralManagerDelegate {
     
     //     カウントを管理するPublishedプロパティ
     @Published var count = 0
     @Published var isAdvertising = false
+    @Published var serviceUUIDStr = "00000000-0000-0000-0000-000000000000"
+    @Published var advertisingServiceUUIDStr = "e7d61ea3-f8dd-49c8-8f2f-f24a0020002e"
     // Bluetoothペリフェラルマネージャ
     var peripheralManager: CBPeripheralManager!
-    // サービスとキャラクタリスティックのUUID
-    let serviceUUID = CBUUID(string: "e7d61ea3-f8dd-49c8-8f2f-f24a0020002e")
-    let characteristicUUID = CBUUID(string: "b37e1ccd-b930-a45e-abef-07f9232b5a81")
     
+    let advertiseUUIDModel = AdvertiseUUIDModel()
+    // サービスとキャラクタリスティックのUUID
+    let characteristicUUID = CBUUID(string: "b37e1ccd-b930-a45e-abef-07f9232b5a81")
     
     override init() {
         super.init()
-        // let options: Dictionary = [CBPeripheralManagerOptionRestoreIdentifierKey: "staywatchPeripheralRestoreIdentifierKey"]
         let options: Dictionary = [CBPeripheralManagerOptionRestoreIdentifierKey: "com.togawakouta.StayWatchBeaconiOS"]
         peripheralManager = CBPeripheralManager(delegate: self, queue: nil, options: options)
         // peripheralManager = CBPeripheralManager(delegate: self, queue: nil, options: nil)
+        // UUIDを保存されている場合そのUUIDに設定する
+        if let uuid = UserDefaults.standard.string(forKey: "uuid") {
+            serviceUUIDStr = uuid
+        }
     }
     
     // ペリフェラルマネージャの状態が更新されたときに呼ばれるデリゲートメソッド
     func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
         // ペリフェラルマネージャの状態に応じたメッセージを出力
         if peripheral.state == .poweredOn {
+            // アプリ起動時ここが起動される
             print("Peripheral Manager is powered on.")
-            startAdvertising()
+            let user = UserUtil()
+            if(!user.isAllowedAdvertising){
+                // アドバタイジングが許されていないならアドバタイジング開始しない
+                print("Advertising is not allowed.")
+                return
+            }
+            startAdvertisingWithOption()
+            //startAdvertising(advertisementData: [String : "b37e1ccd-b930-a45e-abef-07f9232b5a81"])
         } else {
             print("Peripheral Manager is not powered on.")
         }
@@ -44,28 +54,52 @@ class PeripheralManager: NSObject, ObservableObject, CBPeripheralManagerDelegate
     
     
     // アドバタイズを開始するメソッド
-    func startAdvertising() {
+    func startAdvertisingWithOption() {
         // サービスとキャラクタリスティックを作成し、ペリフェラルマネージャに追加
-        let service = CBMutableService(type: serviceUUID, primary: true)
-        let characteristic = CBMutableCharacteristic(type: characteristicUUID, properties: .write, value: nil, permissions: .writeable)
-        service.characteristics = [characteristic]
-        peripheralManager.add(service)
-        let serviceUUIDs = [serviceUUID]
+        //serviceUUIDStr = UserDefaults.standard.string(forKey: "uuid")
+        if let _ = UserDefaults.standard.string(forKey: "uuid"){
+            // nilでない場合
+            serviceUUIDStr = UserDefaults.standard.string(forKey: "uuid")!
+        } else {
+            // nilの場合
+            print("アドバタイズ失敗")
+            return
+        }
+        //serviceUUIDStr = "11111111-1111-1111-1111-07f9232b5a81"
+        
+        
+        let serviceUUIDs = advertiseUUIDModel.generateAdvertisingUUIDs(inputUUID: serviceUUIDStr)
         let advertisementData: [String: Any] = [
-            CBAdvertisementDataLocalNameKey: "kjlb-iPhone11pro",
+            CBAdvertisementDataLocalNameKey: "StayWatchBeaconForiOS",
             CBAdvertisementDataServiceUUIDsKey: serviceUUIDs
         ]
+        
         // アドバタイズ開始
-        print("アドバタイズ開始")
-        //peripheralManager.startAdvertising([CBAdvertisementDataServiceUUIDsKey: [serviceUUID]])
         peripheralManager.startAdvertising(advertisementData)
         isAdvertising = true
+        advertisingServiceUUIDStr = serviceUUIDStr
+        
+        print("アドバタイズ開始")
+        //print(serviceUUIDs)
     }
-
+    
+    // 一つのUUIDをアドバタイズする
+    func startAdvertisingTmpUuid(){
+        let randomUuid = UUID()
+        let randomUuidStr = randomUuid.uuidString
+        let advertisementData: [String: Any] = [
+            CBAdvertisementDataLocalNameKey: "StayWatchBeaconForiOS",
+            CBAdvertisementDataServiceUUIDsKey: [CBUUID(string: randomUuidStr)]
+        ]
+        peripheralManager.startAdvertising(advertisementData)
+        print("アドバタイズ上書き")
+        print(randomUuidStr)
+    }
+    
     // アドバタイズを終了するメソッド
     func stopAdvertising() {
-        print("アドバタイズ終了")
         peripheralManager.stopAdvertising()
+        print("アドバタイズ停止")
         isAdvertising = false
     }
     
@@ -81,8 +115,7 @@ class PeripheralManager: NSObject, ObservableObject, CBPeripheralManagerDelegate
     
     // 復元時に呼ばれる
     func peripheralManager(_ peripheral: CBPeripheralManager, willRestoreState dict: [String : Any]) {
-        print("ペリフェラル復元: \(dict)")
-        startAdvertising()
+        //print("ペリフェラル復元: \(dict)")
     }
 }
 
